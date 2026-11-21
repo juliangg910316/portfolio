@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   // TODO: cambiar por el dominio propio cuando se compre.
-  site: 'https://portfolio.pages.dev',
+  site: 'https://juliangg-portfolio.pages.dev',
   i18n: {
     locales: ['es', 'pt', 'en'],
     defaultLocale: 'es',

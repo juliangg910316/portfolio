@@ -4,7 +4,9 @@
 - Repo creado: Astro 7 + TypeScript estricto + Tailwind v4, i18n ES/PT/EN, Vitest y Playwright (+ axe).
 - Tokens de la propuesta A en `src/styles/global.css`.
 - Backlog de 13 historias en `docs/BACKLOG.md`. **Siguiente: HU-01 (inicio).**
-- Pendiente: crear el repo en GitHub, el proyecto en Cloudflare Pages y comprar el dominio.
+- Repo en GitHub: https://github.com/juliangg910316/portfolio (remoto por HTTPS, como los demás repos; no hay clave SSH en el Mac).
+- Cloudflare Pages: proyecto `juliangg-portfolio` (Direct Upload; publica el CI) → https://juliangg-portfolio.pages.dev
+- Pendiente: comprar el dominio y cambiar `site` en `astro.config.mjs`.
 
 ## Decisiones
 - 2026-11-20: Astro + Cloudflare Pages; historias de usuario + tests en lugar de SDD; diseño A · Noche Flutter (oscuro por defecto, modo claro basado en la propuesta B).
