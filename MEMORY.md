@@ -14,3 +14,4 @@
 
 ## Lecciones
 - `astro preview` pasa solo a segundo plano cuando lo lanza un agente de IA (variable `AI_AGENT`), y Playwright cree que el servidor terminó. Por eso los tests e2e sirven `dist/` con `vite preview`.
+- Publicación: el token de Cloudflare necesita **solo** el permiso `Account · Cloudflare Pages · Edit`, sin filtro de IP (los runners de GitHub cambian de IP). Ojo: "Access: Custom Pages" es de Zero Trust, no sirve. Primera publicación correcta el 2026-11-21.
