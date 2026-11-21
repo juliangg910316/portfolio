@@ -7,7 +7,7 @@ Estado: ⬜ pendiente · 🟦 en curso · ✅ hecha. Orden de trabajo de arriba 
 | ✅ | [HU-01](historias/HU-01-inicio.md) | Inicio con propuesta de valor | Alta |
 | ✅ | [HU-02](historias/HU-02-idiomas.md) | Cambio de idioma ES/PT/EN | Alta |
 | ✅ | [HU-12](historias/HU-12-seo.md) | SEO y vista previa al compartir | Alta |
-| ⬜ | [HU-03](historias/HU-03-proyectos.md) | Listado de proyectos | Alta |
+| ✅ | [HU-03](historias/HU-03-proyectos.md) | Listado de proyectos | Alta |
 | ⬜ | [HU-04](historias/HU-04-caso-de-estudio.md) | Caso de estudio | Alta |
 | ⬜ | [HU-05](historias/HU-05-trayectoria-cv.md) | Trayectoria y CV | Alta |
 | ⬜ | [HU-07](historias/HU-07-contacto.md) | Formulario de contacto | Alta |

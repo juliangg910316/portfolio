@@ -1,0 +1,183 @@
+# Proyectos del portafolio (HU-03). La clave es el slug del caso de estudio: /proyectos/<slug>/.
+# Fuentes: CV, notas del vault (Rueda Viva, SCA, DShaddai, MeuBolso) y el portafolio de Google Sites.
+# Reglas: nunca "Lanetalk" (es "Bowling App"); las apps internas no llevan enlaces a tiendas.
+
+# ── Destacados ──────────────────────────────────────────────
+enzona:
+  name: ENZONA
+  order: 1
+  featured: true
+  category: empleo
+  kind:
+    es: Fintech nacional · Android
+    pt: Fintech nacional · Android
+    en: National fintech · Android
+  summary:
+    es: App de pagos digitales usada en toda Cuba. Fui su desarrollador móvil principal durante casi 8 años.
+    pt: App de pagamentos digitais usado em todo o território cubano. Fui o desenvolvedor mobile principal por quase 8 anos.
+    en: Digital payments app used across Cuba. I was its lead mobile developer for almost 8 years.
+  stack: [Java, MVVM, SQLCipher, MQTT]
+
+sca:
+  name: SCA
+  order: 2
+  featured: true
+  category: cliente
+  fullStack: true
+  kind:
+    es: Control de asistencia · Flutter
+    pt: Controle de presença · Flutter
+    en: Attendance tracking · Flutter
+  summary:
+    es: Fichaje con foto y GPS para los vigilantes de una empresa de seguridad de Houston. Hice la app completa y colaboro en el backend.
+    pt: Registro de ponto com foto e GPS para os vigilantes de uma empresa de segurança de Houston. Fiz o app completo e colaboro no backend.
+    en: Photo and GPS check-in for the guards of a Houston security company. I built the whole app and contribute to the backend.
+  stack: [Flutter, Cubit, Retrofit, NestJS]
+
+rueda-viva:
+  name: Rueda Viva
+  order: 3
+  featured: true
+  category: personal
+  kind:
+    es: Entrenamiento y hábitos · Flutter
+    pt: Treino e hábitos · Flutter
+    en: Training and habits · Flutter
+  summary:
+    es: App de bicicleta estática con rachas diarias y récords, hecha con Spec-Driven Development (6 specs y 43 tareas).
+    pt: App de bicicleta ergométrica com sequências diárias e recordes, feito com Spec-Driven Development (6 specs e 43 tarefas).
+    en: Stationary bike app with daily streaks and personal records, built with Spec-Driven Development (6 specs, 43 tasks).
+  stack: [Flutter, flutter_bloc, drift, freezed]
+
+studio-shaddai:
+  name: Studio Shaddai
+  order: 4
+  featured: true
+  category: cliente
+  inDevelopment: true
+  kind:
+    es: Reservas · Android, iOS y Web
+    pt: Agendamentos · Android, iOS e Web
+    en: Bookings · Android, iOS and Web
+  summary:
+    es: Reservas de turnos para un salón de uñas de Curitiba, con panel de administración y un solo código para las tres plataformas.
+    pt: Agendamento de horários para um salão de unhas de Curitiba, com painel administrativo e um único código para as três plataformas.
+    en: Appointment booking for a nail salon in Curitiba, with an admin panel and a single codebase for all three platforms.
+  stack: [Flutter, Riverpod, Firebase, go_router]
+
+superpay23:
+  name: SuperPay23
+  order: 5
+  featured: true
+  category: empleo
+  internal: true
+  kind:
+    es: Fintech · Flutter
+    pt: Fintech · Flutter
+    en: Fintech · Flutter
+  summary:
+    es: App financiera que empecé desde cero, con tarjetas Visa, verificación KYC, doble factor y pagos con QR.
+    pt: App financeiro que comecei do zero, com cartões Visa, verificação KYC, autenticação em dois fatores e pagamentos por QR.
+    en: Finance app I started from scratch, with Visa cards, KYC verification, two-factor authentication and QR payments.
+  stack: [Flutter, Bloc, GetIt, GoRouter]
+
+centro-de-distribucion:
+  name:
+    es: Centro de Distribución
+    pt: Centro de Distribuição
+    en: Distribution Center
+  order: 6
+  featured: true
+  category: empleo
+  internal: true
+  kind:
+    es: Logística con OCR · Flutter
+    pt: Logística com OCR · Flutter
+    en: Logistics with OCR · Flutter
+  summary:
+    es: Recepción y despacho de mercancía con lectura de códigos y OCR, modo sin conexión e impresión de etiquetas.
+    pt: Recebimento e expedição de mercadorias com leitura de códigos e OCR, modo offline e impressão de etiquetas.
+    en: Goods receiving and dispatch with barcode reading and OCR, offline mode and label printing.
+  stack: [Flutter, BLoC, Scandit, Tesseract OCR]
+
+# ── Otros proyectos ─────────────────────────────────────────
+bowling-app:
+  name: Bowling App
+  order: 7
+  featured: false
+  category: empleo
+  kind:
+    es: Deporte y social · Android
+    pt: Esporte e social · Android
+    en: Sports and social · Android
+  summary:
+    es: Registra automáticamente las puntuaciones de boliche y envía las estadísticas al móvil. Trabajé en un equipo de 3 devs Android.
+    pt: Registra automaticamente as pontuações do boliche e envia as estatísticas ao celular. Trabalhei em uma equipe de 3 devs Android.
+    en: Automatically records bowling scores and sends the stats to the phone. I worked in a team of 3 Android devs.
+  stack: [Java, Kotlin, MVVM, Firebase]
+
+denunciapp:
+  name: DenunciApp
+  order: 8
+  featured: false
+  category: empleo
+  internal: true
+  kind:
+    es: Servicios públicos · Flutter
+    pt: Serviços públicos · Flutter
+    en: Public services · Flutter
+  summary:
+    es: Denuncias sobre problemas en oficinas públicas, con seguimiento del estado y envío sin conexión.
+    pt: Denúncias sobre problemas em repartições públicas, com acompanhamento do status e envio offline.
+    en: Complaints about problems in public offices, with status tracking and offline sending.
+  stack: [Flutter, GetX, Isar, Clean Architecture]
+
+micerveza-desafio:
+  name: MiCerveza-Desafío
+  order: 9
+  featured: false
+  category: empleo
+  internal: true
+  kind:
+    es: App de evento · Flutter
+    pt: App de evento · Flutter
+    en: Event app · Flutter
+  summary:
+    es: Preguntas diarias con puntos, trofeos y un ranking con premios para los participantes de un evento.
+    pt: Perguntas diárias com pontos, troféus e um ranking com prêmios para os participantes de um evento.
+    en: Daily questions with points, trophies and a ranking with prizes for the participants of an event.
+  stack: [Flutter, GetX, Clean Architecture]
+
+meubolso:
+  name: MeuBolso
+  order: 10
+  featured: false
+  category: cliente
+  inDevelopment: true
+  kind:
+    es: Finanzas personales · Flutter
+    pt: Finanças pessoais · Flutter
+    en: Personal finance · Flutter
+  summary:
+    es: Gastos e ingresos por categoría con resumen y gráfico del mes, para un cliente de Brasil. Importes en centavos y tests primero.
+    pt: Despesas e receitas por categoria com resumo e gráfico do mês, para um cliente do Brasil. Valores em centavos e testes primeiro.
+    en: Expenses and income by category with a monthly summary and chart, for a client in Brazil. Amounts in cents, tests first.
+  stack: [Flutter, Supabase, flutter_bloc]
+
+cconet:
+  name:
+    es: Apps de CCONet
+    pt: Apps da CCONet
+    en: CCONet apps
+  order: 11
+  featured: false
+  category: empleo
+  kind:
+    es: Liderazgo técnico · Flutter
+    pt: Liderança técnica · Flutter
+    en: Technical leadership · Flutter
+  summary:
+    es: Lidero el equipo móvil (4 devs) que mantiene unas 10 apps, entre ellas CCONet y 153 Cidadão. Arquitectura, code review y estándares.
+    pt: Lidero a equipe mobile (4 devs) que mantém cerca de 10 apps, entre eles CCONet e 153 Cidadão. Arquitetura, code review e padrões.
+    en: I lead the mobile team (4 devs) that maintains about 10 apps, including CCONet and 153 Cidadão. Architecture, code review and standards.
+  stack: [Flutter, Clean Architecture]

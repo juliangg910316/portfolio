@@ -1,15 +1,86 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from './ProjectCard.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { categories, splitProjects } from '../lib/projects';
 
-// Página mínima: HU-03 añade el listado de proyectos.
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const { featured, others } = splitProjects(await getCollection('proyectos'));
+
+// Filtros sin JavaScript: radios nativos + :has(). Con «Todos» marcado (por defecto) se ve todo.
+const filterCss = categories
+  .map(
+    (c) => `
+.proyectos:has(#filtro-${c}:checked) li:has(> article[data-category]:not([data-category="${c}"])) { display: none; }
+.proyectos:has(#filtro-${c}:checked) [data-grupo]:not(:has(article[data-category="${c}"])) { display: none; }`,
+  )
+  .join('');
+const filters = [
+  { id: 'todos', label: t('projects.filter.all') },
+  ...categories.map((c) => ({ id: c, label: t(`projects.category.${c}`) })),
+];
+const grid = 'grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4';
 ---
 
 <Layout title={t('projects.meta.title')} description={t('projects.lead')}>
-  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+  <style is:inline set:html={filterCss} />
+  <main id="contenido" class="proyectos mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
     <h1 class="font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">{t('projects.title')}</h1>
     <p class="mt-5 max-w-[620px] text-[17px] leading-relaxed text-ink-soft">{t('projects.lead')}</p>
+
+    <fieldset class="mt-8">
+      <legend class="sr-only">{t('projects.filter.label')}</legend>
+      <div class="flex flex-wrap gap-2">
+        {
+          filters.map((f) => (
+            <label class="relative inline-flex">
+              <input
+                type="radio"
+                name="filtro"
+                id={`filtro-${f.id}`}
+                value={f.id}
+                checked={f.id === 'todos'}
+                class="peer absolute inset-0 cursor-pointer opacity-0"
+              />
+              <span class="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-[15px] text-ink-soft peer-checked:border-sky peer-checked:bg-sky peer-checked:font-semibold peer-checked:text-bg peer-hover:border-sky peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sky">
+                {f.label}
+              </span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <section data-grupo aria-labelledby="destacados-titulo" class="mt-10">
+      <h2 id="destacados-titulo" class="text-[13px] font-semibold tracking-[0.12em] text-sky uppercase">
+        {t('projects.featured')}
+      </h2>
+      <ul class:list={['mt-4', grid]}>
+        {
+          featured.map((p) => (
+            <li>
+              <ProjectCard id={p.id} data={p.data} lang={lang} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section data-grupo aria-labelledby="otros-titulo" class="mt-14">
+      <h2 id="otros-titulo" class="text-[13px] font-semibold tracking-[0.12em] text-sky uppercase">
+        {t('projects.others')}
+      </h2>
+      <ul class:list={['mt-4', grid]}>
+        {
+          others.map((p) => (
+            <li>
+              <ProjectCard id={p.id} data={p.data} lang={lang} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </main>
 </Layout>

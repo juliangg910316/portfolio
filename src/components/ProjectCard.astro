@@ -1,0 +1,107 @@
+---
+import type { Lang } from '../i18n/ui';
+import { localizePath, useTranslations } from '../i18n/utils';
+import { localize, type ProjectData } from '../lib/projects';
+
+interface Props {
+  id: string;
+  data: ProjectData;
+  lang: Lang;
+  /** Mostrar el resumen (en el carrusel del inicio se omite). */
+  summary?: boolean;
+}
+
+const { id, data, lang, summary = true } = Astro.props;
+const t = useTranslations(lang);
+const name = localize(data.name, lang);
+// Solo los destacados tienen caso de estudio (HU-04).
+const href = data.featured ? localizePath(`/proyectos/${id}/`, lang) : undefined;
+const tint = data.order % 2 === 0 ? 'bg-primary/25' : 'bg-primary-deep/50';
+---
+
+<article
+  data-category={data.category}
+  class="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-border bg-surface text-ink transition-colors hover:border-sky"
+>
+  <div aria-hidden="true" class:list={['flex h-[150px] items-end justify-center', tint]}>
+    <div
+      class="flex h-[124px] w-[88px] flex-col gap-1.5 rounded-t-[18px] border-[5px] border-b-0 border-border bg-bg px-2.5 pt-3.5"
+    >
+      <span class="h-2 w-3/5 rounded bg-sky"></span>
+      <span class="h-6 rounded-md bg-border"></span>
+      <span class="h-6 rounded-md bg-border"></span>
+      <span class="h-2 w-4/5 rounded bg-border"></span>
+    </div>
+  </div>
+
+  {
+    (data.internal || data.inDevelopment || data.fullStack) && (
+      <p class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+        {data.internal && (
+          <span class="rounded-full bg-bg px-2.5 py-1 text-xs font-semibold text-warning">
+            {t('projects.badge.internal')}
+          </span>
+        )}
+        {data.inDevelopment && (
+          <span class="rounded-full bg-bg px-2.5 py-1 text-xs font-semibold text-link">{t('projects.badge.dev')}</span>
+        )}
+        {data.fullStack && (
+          <span class="rounded-full bg-bg px-2.5 py-1 text-xs font-semibold text-success">
+            {t('projects.badge.fullstack')}
+          </span>
+        )}
+      </p>
+    )
+  }
+
+  <div class="flex flex-1 flex-col gap-3 p-[18px]">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <h3 class="font-display text-lg leading-tight font-bold">
+          {
+            href ? (
+              <a
+                href={href}
+                class="text-ink no-underline after:absolute after:inset-0 after:rounded-[20px] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-sky"
+              >
+                {name}
+              </a>
+            ) : (
+              name
+            )
+          }
+        </h3>
+        <p data-testid="tipo" class="mt-1 text-[13px] text-ink-muted">{localize(data.kind, lang)}</p>
+      </div>
+      {
+        href && (
+          <span
+            aria-hidden="true"
+            class="flex size-9 flex-none items-center justify-center rounded-full border-[1.5px] border-sky text-ink group-hover:bg-sky group-hover:text-bg"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </span>
+        )
+      }
+    </div>
+    {summary && <p class="text-sm leading-relaxed text-ink-soft">{localize(data.summary, lang)}</p>}
+    <ul aria-label={t('projects.stack')} class="mt-auto flex flex-wrap gap-1.5 pt-1">
+      {
+        data.stack.map((tech) => (
+          <li class="rounded-full border border-border px-2.5 py-1 text-xs text-ink-soft">{tech}</li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

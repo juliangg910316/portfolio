@@ -1,6 +1,7 @@
 ---
 import Hero from './Hero.astro';
 import About from './About.astro';
+import FeaturedProjects from './FeaturedProjects.astro';
 import { getLangFromUrl, localizePath } from '../i18n/utils';
 import { social } from '../i18n/links';
 
@@ -24,4 +25,5 @@ const person = {
   <script type="application/ld+json" set:html={JSON.stringify(person)} />
   <Hero />
   <About />
+  <FeaturedProjects />
 </main>
