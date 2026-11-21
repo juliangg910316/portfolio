@@ -3,7 +3,8 @@
 ## Estado (2026-11-21)
 - Repo creado: Astro 7 + TypeScript estricto + Tailwind v4, i18n ES/PT/EN, Vitest y Playwright (+ axe).
 - Tokens de la propuesta A en `src/styles/global.css`.
-- Backlog de 13 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos). **Siguiente: HU-04 (caso de estudio)**: las tarjetas destacadas ya enlazan a `/proyectos/<slug>/` (hoy 404).
+- Backlog de 13 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio). **Siguiente: HU-05 (trayectoria y CV).**
+- Casos de estudio con huecos `[PENDIENTE: …]` (ES/PT/EN): `grep -rn PENDIENTE src/content/casos/es` para ver la lista. Al rellenarlos, cambiar los 3 idiomas.
 - Marcadores `[PENDIENTE]` en la web: foto (`About.astro`), WhatsApp (`social.whatsapp` en `src/i18n/links.ts`, hoy `https://wa.me/PENDIENTE`) y PDF del CV (`public/cv/julian-gutierrez-{es,pt,en}.pdf`, el botón da 404 hasta subirlos).
 - Rutas del menú ya definitivas, con el mismo slug en los 3 idiomas y **barra final**: `/proyectos/`, `/experiencia/`, `/blog/`, `/contacto/` (y `/#sobre-mi`). Experiencia, Blog y Contacto dan 404 hasta su historia.
 - Proyectos: datos en `src/content/proyectos.yaml` (colección `proyectos`, esquema en `src/content.config.ts`); lógica pura en `src/lib/projects.ts`. Listado en `ProjectsPage.astro`, carrusel del inicio en `FeaturedProjects.astro` (único JS: las flechas).
@@ -14,6 +15,7 @@
 ## Decisiones
 - 2026-11-20: Astro + Cloudflare Pages; historias de usuario + tests en lugar de SDD; diseño A · Noche Flutter (oscuro por defecto, modo claro basado en la propuesta B).
 - El español va sin prefijo (`/`); portugués e inglés con prefijo (`/pt/`, `/en/`).
+- 2026-11-21 (HU-04): los 6 casos publicados aunque tengan huecos `[PENDIENTE]`; enlaces externos solo los confirmados por Julian.
 - 2026-11-21 (HU-03): filtros Empleo/Cliente/Personal solo con CSS; solo los 6 destacados tienen caso de estudio; MeuBolso y Studio Shaddai "En desarrollo".
 - 2026-11-21 (HU-12): imagen OG por idioma generada por script (no en cada build); 404 propio por idioma; JSON-LD `Person` sin datos de contacto.
 - 2026-11-21 (HU-02): sin redirección automática por idioma del navegador; `trailingSlash: 'always'` porque Cloudflare Pages redirige `/x` → `/x/`; `hreflang` + `x-default` (español).

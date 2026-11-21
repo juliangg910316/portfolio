@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { file } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { categories } from './lib/projects';
 
@@ -20,7 +20,27 @@ const proyectos = defineCollection({
     internal: z.boolean().default(false),
     inDevelopment: z.boolean().default(false),
     fullStack: z.boolean().default(false),
+    /** Enlaces externos del caso de estudio (HU-04). */
+    links: z
+      .array(
+        z.object({
+          type: z.enum(['repo', 'web', 'store']),
+          url: z.url(),
+          /** Nombre de la tienda, para el texto del enlace («Ver en Apklis»). */
+          store: z.string().optional(),
+        }),
+      )
+      .default([]),
+  })
+  .refine((p) => !(p.internal && p.links.some((l) => l.type === 'store')), {
+    message: 'Las apps internas no pueden enlazar a tiendas',
   }),
 });
 
-export const collections = { proyectos };
+// Casos de estudio (HU-04): src/content/casos/<idioma>/<slug>.md, con las 6 secciones como «##».
+const casos = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/casos' }),
+  schema: z.object({}),
+});
+
+export const collections = { proyectos, casos };

@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import CaseStudy from '../../../components/CaseStudy.astro';
+
+// Un caso de estudio por proyecto destacado (HU-04).
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos', ({ data }) => data.featured);
+  return proyectos.map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+---
+
+<CaseStudy slug={slug} />

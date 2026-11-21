@@ -18,10 +18,17 @@ export interface ProjectData {
   internal: boolean;
   inDevelopment: boolean;
   fullStack: boolean;
+  links?: Array<{ type: 'repo' | 'web' | 'store'; url: string; store?: string | undefined }>;
 }
 
 export function localize(value: Localized, lang: Lang): string {
   return typeof value === 'string' ? value : value[lang];
+}
+
+/** Anterior y siguiente de un proyecto en una lista circular (el primero enlaza al último y viceversa). */
+export function neighbors<T>(list: T[], index: number): { prev: T; next: T } {
+  const n = list.length;
+  return { prev: list[(index - 1 + n) % n]!, next: list[(index + 1) % n]! };
 }
 
 /** Separa los destacados del resto, cada grupo ordenado por `order`. */

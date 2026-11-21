@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { categories, localize, splitProjects, type ProjectData } from '../../src/lib/projects';
+import { categories, localize, neighbors, splitProjects, type ProjectData } from '../../src/lib/projects';
 
 const base: Omit<ProjectData, 'name' | 'order' | 'featured'> = {
   category: 'empleo',
@@ -37,5 +37,16 @@ describe('splitProjects', () => {
 describe('categories', () => {
   it('son los filtros acordados, en orden', () => {
     expect(categories).toEqual(['empleo', 'cliente', 'personal']);
+  });
+});
+
+describe('neighbors', () => {
+  const lista = ['a', 'b', 'c'];
+  it('devuelve el anterior y el siguiente', () => {
+    expect(neighbors(lista, 1)).toEqual({ prev: 'a', next: 'c' });
+  });
+  it('es circular en los extremos', () => {
+    expect(neighbors(lista, 0)).toEqual({ prev: 'c', next: 'b' });
+    expect(neighbors(lista, 2)).toEqual({ prev: 'b', next: 'a' });
   });
 });

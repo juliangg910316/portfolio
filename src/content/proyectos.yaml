@@ -17,6 +17,8 @@ enzona:
     pt: App de pagamentos digitais usado em todo o território cubano. Fui o desenvolvedor mobile principal por quase 8 anos.
     en: Digital payments app used across Cuba. I was its lead mobile developer for almost 8 years.
   stack: [Java, MVVM, SQLCipher, MQTT]
+  links:
+    - { type: store, store: Apklis, url: 'https://www.apklis.cu/application/cu.xetid.apk.enzona' }
 
 sca:
   name: SCA
@@ -48,6 +50,8 @@ rueda-viva:
     pt: App de bicicleta ergométrica com sequências diárias e recordes, feito com Spec-Driven Development (6 specs e 43 tarefas).
     en: Stationary bike app with daily streaks and personal records, built with Spec-Driven Development (6 specs, 43 tasks).
   stack: [Flutter, flutter_bloc, drift, freezed]
+  links:
+    - { type: repo, url: 'https://github.com/juliangg910316/SpinStreak' }
 
 studio-shaddai:
   name: Studio Shaddai
@@ -64,6 +68,9 @@ studio-shaddai:
     pt: Agendamento de horários para um salão de unhas de Curitiba, com painel administrativo e um único código para as três plataformas.
     en: Appointment booking for a nail salon in Curitiba, with an admin panel and a single codebase for all three platforms.
   stack: [Flutter, Riverpod, Firebase, go_router]
+  links:
+    - { type: web, url: 'https://dshaddai.com' }
+    - { type: repo, url: 'https://github.com/juliangg910316/shaddai-app' }
 
 superpay23:
   name: SuperPay23
