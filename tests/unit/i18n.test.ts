@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ui } from '../../src/i18n/ui';
-import { getLangFromUrl, localizePath, stripLang, useTranslations } from '../../src/i18n/utils';
+import { alternatePath, getLangFromUrl, isNotFoundPath, localizePath, stripLang, useTranslations } from '../../src/i18n/utils';
 
 describe('getLangFromUrl', () => {
   it('devuelve es cuando la ruta no tiene prefijo', () => {
@@ -57,5 +57,24 @@ describe('ui', () => {
         expect(texto.trim(), `${lang}.${clave}`).not.toBe('');
       }
     }
+  });
+});
+
+describe('isNotFoundPath', () => {
+  it('reconoce las páginas 404 de cada idioma', () => {
+    for (const p of ['/404', '/404/', '/404.html', '/pt/404/', '/en/404.html']) expect(isNotFoundPath(p), p).toBe(true);
+  });
+  it('no confunde otras rutas', () => {
+    for (const p of ['/', '/proyectos/', '/blog/404-errores/', '/pt/']) expect(isNotFoundPath(p), p).toBe(false);
+  });
+});
+
+describe('alternatePath', () => {
+  it('lleva a la misma página en otro idioma', () => {
+    expect(alternatePath('/proyectos/', 'pt')).toBe('/pt/proyectos/');
+  });
+  it('desde una página 404 lleva al inicio del otro idioma', () => {
+    expect(alternatePath('/pt/404/', 'es')).toBe('/');
+    expect(alternatePath('/404/', 'en')).toBe('/en/');
   });
 });

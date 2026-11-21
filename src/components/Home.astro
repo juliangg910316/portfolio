@@ -1,9 +1,27 @@
 ---
 import Hero from './Hero.astro';
 import About from './About.astro';
+import { getLangFromUrl, localizePath } from '../i18n/utils';
+import { social } from '../i18n/links';
+
+const lang = getLangFromUrl(Astro.url);
+// Datos estructurados para Google (HU-12, CA5). Sin email ni teléfono, para evitar spam.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Julian Gutierrez',
+  jobTitle: 'Mobile Tech Lead',
+  url: new URL(localizePath('/', lang), Astro.site).href,
+  image: new URL(`/og/${lang}.png`, Astro.site).href,
+  sameAs: [social.linkedin, social.github],
+  address: { '@type': 'PostalAddress', addressLocality: 'Curitiba', addressRegion: 'PR', addressCountry: 'BR' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad de La Habana' },
+  knowsAbout: ['Flutter', 'Dart', 'Android', 'Kotlin', 'Java', 'Clean Architecture', 'NestJS', 'React', 'Cryptography'],
+};
 ---
 
 <main id="contenido">
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
   <Hero />
   <About />
 </main>

@@ -26,3 +26,13 @@ export function localizePath(pathname: string, lang: Lang): string {
 export function useTranslations(lang: Lang) {
   return (key: UiKey): string => ui[lang][key] ?? ui[defaultLang][key];
 }
+
+/** ¿Es una página 404 (de cualquier idioma)? */
+export function isNotFoundPath(pathname: string): boolean {
+  return /^\/404(?:\/|\.html)?$/.test(stripLang(pathname));
+}
+
+/** Ruta equivalente en otro idioma; desde un 404, el inicio de ese idioma. */
+export function alternatePath(pathname: string, lang: Lang): string {
+  return localizePath(isNotFoundPath(pathname) ? '/' : pathname, lang);
+}

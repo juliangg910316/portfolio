@@ -1,6 +1,6 @@
 ---
 import { languages, type Lang } from '../i18n/ui';
-import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { alternatePath, getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 import { getNavItems } from '../i18n/links';
 
 const lang = getLangFromUrl(Astro.url);
@@ -54,7 +54,7 @@ const langs = Object.keys(languages) as Lang[];
           langs.map((l) => (
             <li>
               <a
-                href={localizePath(Astro.url.pathname, l)}
+                href={alternatePath(Astro.url.pathname, l)}
                 hreflang={l}
                 lang={l}
                 aria-current={l === lang ? 'true' : undefined}

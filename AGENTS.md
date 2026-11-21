@@ -36,6 +36,7 @@ Ciclo por historia:
 | `npm test` | Tests unitarios (Vitest) |
 | `npm run test:e2e` | Build + tests e2e (Playwright, escritorio y móvil) |
 | `npm run check` | Comprobación de tipos de Astro |
+| `npm run og` | Regenera las imágenes Open Graph (`public/og/<lang>.png`) |
 
 ## Estructura
 
