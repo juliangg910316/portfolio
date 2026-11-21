@@ -1,0 +1,162 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getContactPath, getCvPath, social } from '../i18n/links';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const socialLinks = [
+  { name: 'LinkedIn', href: social.linkedin, icon: 'linkedin' },
+  { name: 'GitHub', href: social.github, icon: 'github' },
+  { name: 'WhatsApp', href: social.whatsapp, icon: 'whatsapp' },
+] as const;
+
+const tags = [
+  { text: 'Flutter', class: 'left-0 top-[90px] text-link' },
+  { text: 'Clean Architecture', class: 'right-0 top-10 text-ink' },
+  { text: t('hero.tag.ai'), class: 'right-1.5 bottom-[120px] text-link' },
+  { text: 'BLoC · Riverpod', class: 'left-2.5 bottom-[60px] text-ink' },
+];
+---
+
+<section class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+  <div class="flex flex-wrap items-center gap-14">
+    <div class="min-w-0 flex-[1_1_420px]">
+      <ul aria-label={t('social.label')} class="mb-7 flex gap-2.5">
+        {
+          socialLinks.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                aria-label={s.name}
+                rel="me noopener"
+                target="_blank"
+                class="flex size-11 items-center justify-center rounded-xl border border-border text-ink hover:border-sky hover:text-sky"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  {s.icon === 'linkedin' && (
+                    <Fragment>
+                      <rect x="3" y="3" width="18" height="18" rx="3" />
+                      <path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7" />
+                    </Fragment>
+                  )}
+                  {s.icon === 'github' && (
+                    <path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+                  )}
+                  {s.icon === 'whatsapp' && <path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z" />}
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="font-display text-2xl font-medium text-ink-soft sm:text-3xl">{t('hero.greeting')}</p>
+      <h1 class="mt-1 font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">
+        Julian <span class="text-sky">Gutierrez</span>
+      </h1>
+      <p class="mt-4 font-display text-xl font-medium text-link sm:text-2xl">{t('hero.role')}</p>
+      <p data-testid="hero-descripcion" class="mt-5 max-w-[520px] text-[17px] leading-relaxed text-ink-soft">
+        {t('hero.description')}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3.5">
+        <a
+          href={getCvPath(lang)}
+          type="application/pdf"
+          class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-[15px] font-semibold text-white no-underline hover:bg-primary-deep"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg
+          >
+          {t('hero.cv')}
+        </a>
+        <a
+          href={getContactPath(lang)}
+          class="inline-flex h-12 items-center gap-2.5 rounded-full border-[1.5px] border-sky px-6 text-[15px] font-semibold text-ink no-underline hover:bg-surface"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg
+          >
+          {t('hero.hire')}
+        </a>
+      </div>
+    </div>
+
+    <!-- Ilustración esquemática (sin cifras inventadas). Sustituir por una captura real de Rueda Viva cuando exista. -->
+    <div aria-hidden="true" class="hidden min-w-0 flex-[1_1_420px] justify-center sm:flex">
+      <div class="relative h-[520px] w-[440px] max-w-full">
+        <div
+          class="absolute inset-0 m-auto aspect-square w-full max-w-[420px] rounded-full bg-[radial-gradient(circle,var(--color-primary-deep)_0%,transparent_70%)] opacity-70"
+        >
+        </div>
+        <div
+          class="absolute top-5 left-1/2 flex h-[480px] w-[236px] -translate-x-1/2 flex-col gap-3.5 rounded-[40px] border-8 border-border bg-surface px-[18px] py-[26px]"
+        >
+          <span class="h-1.5 w-16 self-center rounded-md bg-border"></span>
+          <span class="mt-1.5 h-2.5 w-1/2 rounded bg-ink-muted/50"></span>
+          <span class="h-9 w-3/4 rounded-lg bg-ink/80"></span>
+          <div class="grid grid-cols-7 gap-[5px]">
+            {
+              ['primary', 'primary', 'primary', 'sky', 'primary', 'sky', 'border'].map((c) => (
+                <span
+                  class:list={[
+                    'h-[22px] rounded-md',
+                    { 'bg-primary': c === 'primary', 'bg-sky': c === 'sky', 'bg-border': c === 'border' },
+                  ]}
+                />
+              ))
+            }
+          </div>
+          <div class="flex flex-col gap-2 rounded-2xl bg-bg p-3.5">
+            <span class="h-2 w-2/5 rounded bg-ink-muted/50"></span>
+            <span class="h-4 w-3/5 rounded bg-ink/80"></span>
+          </div>
+          <div class="flex flex-col gap-2 rounded-2xl bg-bg p-3.5">
+            <span class="h-2 w-1/2 rounded bg-ink-muted/50"></span>
+            <span class="h-4 w-2/5 rounded bg-ink/80"></span>
+          </div>
+          <span class="mt-auto h-11 rounded-[14px] bg-primary"></span>
+        </div>
+        {
+          tags.map((tag) => (
+            <span
+              class:list={[
+                'absolute rounded-[14px] border border-border bg-surface px-4 py-2.5 text-sm font-semibold',
+                tag.class,
+              ]}
+            >
+              {tag.text}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

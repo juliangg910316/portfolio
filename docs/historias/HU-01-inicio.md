@@ -2,7 +2,7 @@
 
 **Como** visitante (reclutador o cliente) **quiero** ver en el inicio quién es Julian, qué hace y sus cifras **para** entenderlo en 10 segundos.
 
-- **Prioridad**: Alta · **Estado**: Pendiente · **Tests**: `tests/e2e/HU-01-inicio.spec.ts`
+- **Prioridad**: Alta · **Estado**: Hecha (2026-11-21) · **Tests**: `tests/e2e/HU-01-inicio.spec.ts`
 
 ## Criterios de aceptación
 1. **Dado** que abro `/`, **entonces** veo un único `<h1>` con "Julian Gutierrez", el cargo "Mobile Tech Lead" y una descripción de una o dos frases.
@@ -15,4 +15,5 @@
 
 ## Notas
 - Diseño: `docs/diseno.md`, secciones 1–3. Las secciones de formación, habilidades y proyectos del inicio llegan con HU-03, HU-05 y siguientes.
-- Pendiente: foto profesional, URL de LinkedIn/GitHub/WhatsApp y PDF del CV en 3 idiomas.
+- Decisiones (2026-11-21): el menú y «Contrátame» apuntan ya a las rutas finales (`/proyectos`, `/experiencia`, `/blog`, `/contacto`), que darán 404 hasta sus historias. El menú incluye el selector ES/PT/EN (enlaces simples); el botón de tema llega con HU-11. El móvil del inicio es esquemático, sin cifras.
+- Pendiente: foto profesional (`About.astro`), número de WhatsApp (`social.whatsapp` en `src/i18n/links.ts`) y PDF del CV en `public/cv/julian-gutierrez-{es,pt,en}.pdf`.

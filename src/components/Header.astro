@@ -1,0 +1,75 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getNavItems } from '../i18n/links';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+const current = normalize(Astro.url.pathname);
+const navItems = getNavItems(lang);
+const langs = Object.keys(languages) as Lang[];
+---
+
+<header class="mx-auto max-w-[1200px] px-4 pt-6 sm:px-6">
+  <div
+    class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-[20px] border border-border bg-surface py-2.5 pr-3 pl-4 sm:pl-5"
+  >
+    <a href={localizePath('/', lang)} class="flex min-h-11 items-center gap-2.5 text-ink no-underline">
+      <span
+        aria-hidden="true"
+        class="flex size-10 items-center justify-center rounded-xl bg-primary font-display text-[17px] font-bold text-white"
+        >JG</span
+      >
+      <span class="font-display text-lg font-bold">Julian<span class="text-sky">.dev</span></span>
+    </a>
+
+    <nav aria-label={t('nav.label')} class="order-last w-full lg:order-none lg:w-auto">
+      <ul class="flex flex-wrap gap-x-5 lg:gap-x-6">
+        {
+          navItems.map((item) => {
+            const isCurrent = normalize(item.href) === current;
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  class:list={[
+                    'inline-flex min-h-11 items-center border-b-2 text-[15px] no-underline hover:text-ink',
+                    isCurrent ? 'border-sky font-semibold text-ink' : 'border-transparent text-ink-soft',
+                  ]}
+                >
+                  {t(item.key)}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label={t('lang.label')}>
+      <ul class="flex rounded-full border border-border bg-bg p-[3px]">
+        {
+          langs.map((l) => (
+            <li>
+              <a
+                href={localizePath(Astro.url.pathname, l)}
+                hreflang={l}
+                lang={l}
+                aria-current={l === lang ? 'true' : undefined}
+                class:list={[
+                  'flex h-11 min-w-11 items-center justify-center rounded-full px-2 text-[13px] no-underline',
+                  l === lang ? 'bg-sky font-semibold text-bg' : 'text-ink-soft hover:text-ink',
+                ]}
+              >
+                <span aria-hidden="true">{l.toUpperCase()}</span>
+                <span class="sr-only">{languages[l]}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
