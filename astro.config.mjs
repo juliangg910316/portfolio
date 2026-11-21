@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // TODO: cambiar por el dominio propio cuando se compre.
   site: 'https://juliangg-portfolio.pages.dev',
+  // Cloudflare Pages sirve carpeta/index.html en /carpeta/: todas las URL llevan barra final.
+  trailingSlash: 'always',
   i18n: {
     locales: ['es', 'pt', 'en'],
     defaultLocale: 'es',

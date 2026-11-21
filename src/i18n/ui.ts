@@ -40,6 +40,10 @@ export const ui = {
     'about.stat.devs': 'devs en mi equipo',
     'about.stat.countries': 'países',
     'about.cta': 'Hablemos',
+    'projects.meta.title': 'Proyectos · Julian Gutierrez',
+    'projects.title': 'Proyectos',
+    'projects.lead':
+      'Casos de estudio de apps en Flutter, Android y full-stack: el problema, mi rol, la arquitectura y el resultado.',
   },
   pt: {
     'site.title': 'Julian Gutierrez · Mobile Tech Lead',
@@ -72,6 +76,10 @@ export const ui = {
     'about.stat.devs': 'devs na minha equipe',
     'about.stat.countries': 'países',
     'about.cta': 'Vamos conversar',
+    'projects.meta.title': 'Projetos · Julian Gutierrez',
+    'projects.title': 'Projetos',
+    'projects.lead':
+      'Estudos de caso de apps em Flutter, Android e full-stack: o problema, meu papel, a arquitetura e o resultado.',
   },
   en: {
     'site.title': 'Julian Gutierrez · Mobile Tech Lead',
@@ -104,6 +112,10 @@ export const ui = {
     'about.stat.devs': 'devs on my team',
     'about.stat.countries': 'countries',
     'about.cta': "Let's talk",
+    'projects.meta.title': 'Projects · Julian Gutierrez',
+    'projects.title': 'Projects',
+    'projects.lead':
+      'Case studies of Flutter, Android and full-stack apps: the problem, my role, the architecture and the outcome.',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 

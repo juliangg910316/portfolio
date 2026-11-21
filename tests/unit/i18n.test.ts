@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { ui } from '../../src/i18n/ui';
 import { getLangFromUrl, localizePath, stripLang, useTranslations } from '../../src/i18n/utils';
 
 describe('getLangFromUrl', () => {
@@ -41,5 +42,20 @@ describe('useTranslations', () => {
   it('traduce por idioma', () => {
     expect(useTranslations('pt')('nav.home')).toBe('Início');
     expect(useTranslations('en')('nav.home')).toBe('Home');
+  });
+});
+
+describe('ui', () => {
+  const claves = (lang: keyof typeof ui) => Object.keys(ui[lang]).sort();
+  it('los 3 idiomas tienen las mismas claves', () => {
+    expect(claves('pt')).toEqual(claves('es'));
+    expect(claves('en')).toEqual(claves('es'));
+  });
+  it('ningún texto está vacío', () => {
+    for (const lang of Object.keys(ui) as Array<keyof typeof ui>) {
+      for (const [clave, texto] of Object.entries(ui[lang])) {
+        expect(texto.trim(), `${lang}.${clave}`).not.toBe('');
+      }
+    }
   });
 });

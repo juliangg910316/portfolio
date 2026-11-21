@@ -79,7 +79,7 @@ async function ca2Botones(page: Page, c: Contenido) {
 
   const contratame = page.getByRole('link', { name: c.contratame });
   await expect(contratame).toBeVisible();
-  await expect(contratame).toHaveAttribute('href', `${c.prefijo}/contacto`);
+  await expect(contratame).toHaveAttribute('href', `${c.prefijo}/contacto/`);
 }
 
 async function ca3Redes(page: Page) {

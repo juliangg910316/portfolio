@@ -2,7 +2,7 @@
 
 **Como** visitante **quiero** cambiar entre español, portugués e inglés sin perder la página en la que estoy **para** leer en mi idioma.
 
-- **Prioridad**: Alta · **Estado**: Pendiente · **Tests**: `tests/e2e/HU-02-idiomas.spec.ts`
+- **Prioridad**: Alta · **Estado**: Hecha (2026-11-21) · **Tests**: `tests/e2e/HU-02-idiomas.spec.ts`
 
 ## Criterios de aceptación
 1. **Dado** cualquier página, **entonces** veo un selector ES / PT / EN y el idioma actual está marcado (`aria-current` o `aria-pressed`).
@@ -13,4 +13,7 @@
 
 ## Notas
 - Lógica ya hecha y probada en `src/i18n/utils.ts` (`localizePath`). Falta el componente del selector.
-- Sin redirección automática por idioma del navegador (decisión pendiente).
+- **Sin redirección automática** por idioma del navegador (decidido el 2026-11-21): cada URL muestra siempre su idioma.
+- Todas las URL llevan barra final (`trailingSlash: 'always'`), como las sirve Cloudflare Pages: `/pt/proyectos/`.
+- Para probar el CA2 se crearon páginas mínimas de Proyectos (`ProjectsPage.astro`: título + entradilla) que HU-03 completará.
+- Además de `hreflang` por idioma, hay `x-default` apuntando a la versión en español.

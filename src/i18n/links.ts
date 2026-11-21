@@ -16,10 +16,10 @@ export interface NavItem {
 const navPaths: ReadonlyArray<{ key: UiKey; path: string }> = [
   { key: 'nav.home', path: '/' },
   { key: 'nav.about', path: '/#sobre-mi' },
-  { key: 'nav.projects', path: '/proyectos' },
-  { key: 'nav.experience', path: '/experiencia' },
-  { key: 'nav.blog', path: '/blog' },
-  { key: 'nav.contact', path: '/contacto' },
+  { key: 'nav.projects', path: '/proyectos/' },
+  { key: 'nav.experience', path: '/experiencia/' },
+  { key: 'nav.blog', path: '/blog/' },
+  { key: 'nav.contact', path: '/contacto/' },
 ];
 
 /** Enlaces del menú principal en el idioma dado. */
@@ -34,5 +34,5 @@ export function getCvPath(lang: Lang): string {
 
 /** Página de contacto en el idioma dado (llega con HU-07). */
 export function getContactPath(lang: Lang): string {
-  return localizePath('/contacto', lang);
+  return localizePath('/contacto/', lang);
 }

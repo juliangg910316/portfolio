@@ -16,16 +16,16 @@ describe('getNavItems', () => {
     expect(getNavItems('es').map((i) => i.href)).toEqual([
       '/',
       '/#sobre-mi',
-      '/proyectos',
-      '/experiencia',
-      '/blog',
-      '/contacto',
+      '/proyectos/',
+      '/experiencia/',
+      '/blog/',
+      '/contacto/',
     ]);
   });
   it('añade el prefijo de idioma en pt y en', () => {
     expect(getNavItems('pt')[0]!.href).toBe('/pt/');
     expect(getNavItems('en')[1]!.href).toBe('/en/#sobre-mi');
-    expect(getNavItems('en')[5]!.href).toBe('/en/contacto');
+    expect(getNavItems('en')[5]!.href).toBe('/en/contacto/');
   });
 });
 
@@ -39,7 +39,7 @@ describe('getCvPath', () => {
 
 describe('getContactPath', () => {
   it('lleva a contacto en el idioma actual', () => {
-    expect(getContactPath('es')).toBe('/contacto');
-    expect(getContactPath('pt')).toBe('/pt/contacto');
+    expect(getContactPath('es')).toBe('/contacto/');
+    expect(getContactPath('pt')).toBe('/pt/contacto/');
   });
 });

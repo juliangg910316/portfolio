@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+// Página mínima: HU-03 añade el listado de proyectos.
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('projects.meta.title')} description={t('projects.lead')}>
+  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+    <h1 class="font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">{t('projects.title')}</h1>
+    <p class="mt-5 max-w-[620px] text-[17px] leading-relaxed text-ink-soft">{t('projects.lead')}</p>
+  </main>
+</Layout>

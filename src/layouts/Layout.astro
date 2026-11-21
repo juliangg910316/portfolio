@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/Header.astro';
-import { languages } from '../i18n/ui';
+import { defaultLang, languages } from '../i18n/ui';
 import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 
 interface Props {
@@ -32,6 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         />
       ))
     }
+    <link rel="alternate" hreflang="x-default" href={new URL(localizePath(Astro.url.pathname, defaultLang), Astro.site)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
