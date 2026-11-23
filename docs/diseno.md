@@ -21,7 +21,7 @@ Elegida el 2026-11-20. Lienzo con las 3 propuestas: https://claude.ai/artifact/M
 
 **Papel** (CV imprimible y PDF, HU-05): `paper` `#FFFFFF`, `paper-ink` `#0B1B2B`, `paper-muted` `#44576B`, con `primary-deep` para títulos y enlaces.
 
-Modo claro (HU-11): pendiente, a partir de la propuesta B (fondo `#FFFFFF`/`#F2F7FC`, texto `#0B1B2B`, acento `#0175C2`, eyebrows `#02569B`).
+**Modo claro** (HU-11, a partir de la propuesta B): mismos nombres de token con otros valores bajo `:root[data-theme="light"]` en `global.css`: `bg` `#F2F7FC`, `surface` `#FFFFFF`, `border` `#CFDCEB`, `ink` `#0B1B2B`, `ink-soft` `#2F4256`, `ink-muted` `#4A5E73`, `primary` `#0175C2`, `primary-deep` y `sky` `#02569B`, `link` `#0166A8`, `success` `#11703F`, `warning` `#8A4B00`. Variante de Tailwind `light:` para los pocos casos que cambian algo más que el color (iconos del botón de tema).
 
 ## Tipografía
 - **Títulos**: Space Grotesk 500/700 (`font-display`).

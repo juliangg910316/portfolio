@@ -19,6 +19,11 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
 
+  // Código de los casos de estudio con un tema para cada modo (HU-11); los colores se eligen en global.css.
+  markdown: {
+    shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' }, defaultColor: false },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

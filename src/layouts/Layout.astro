@@ -27,6 +27,17 @@ const ogImage = abs(`/og/${lang}.png`);
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <!-- Tema (HU-11): en línea y antes del CSS para que no parpadee. Elección guardada > sistema > oscuro. -->
+    <script is:inline data-tema>
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem('tema');
+        } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />

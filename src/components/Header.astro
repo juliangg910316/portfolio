@@ -21,7 +21,7 @@ const langs = Object.keys(languages) as Lang[];
         class="flex size-10 items-center justify-center rounded-xl bg-primary font-display text-[17px] font-bold text-white"
         >JG</span
       >
-      <span class="font-display text-lg font-bold">Julian<span class="text-sky">.dev</span></span>
+      <span class="font-display text-lg font-bold max-[399px]:sr-only">Julian<span class="text-sky">.dev</span></span>
     </a>
 
     <nav aria-label={t('nav.label')} class="order-last w-full lg:order-none lg:w-auto">
@@ -48,6 +48,7 @@ const langs = Object.keys(languages) as Lang[];
       </ul>
     </nav>
 
+    <div class="flex items-center gap-2">
     <nav aria-label={t('lang.label')}>
       <ul class="flex rounded-full border border-border bg-bg p-[3px]">
         {
@@ -71,5 +72,60 @@ const langs = Object.keys(languages) as Lang[];
         }
       </ul>
     </nav>
+
+    <!-- Tema (HU-11): el aria-label describe la acción siguiente; lo actualiza el script según data-theme. -->
+    <button
+      id="tema"
+      type="button"
+      aria-label={t('theme.toLight')}
+      data-to-light={t('theme.toLight')}
+      data-to-dark={t('theme.toDark')}
+      class="theme-toggle flex size-11 items-center justify-center rounded-full border border-border bg-bg text-ink-soft hover:border-sky hover:text-ink"
+    >
+      <svg class="light:hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+      </svg>
+      <svg class="hidden light:block" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path>
+      </svg>
+    </button>
+    </div>
   </div>
 </header>
+
+<script>
+  // Cambio de tema (HU-11). El tema inicial lo fija el script en línea de Layout.astro.
+  const button = document.getElementById('tema');
+  const root = document.documentElement;
+  const system = window.matchMedia?.('(prefers-color-scheme: light)');
+
+  const stored = () => {
+    try {
+      return localStorage.getItem('tema');
+    } catch {
+      return null;
+    }
+  };
+  const apply = (theme: 'light' | 'dark') => {
+    root.dataset.theme = theme;
+    button?.setAttribute('aria-label', (theme === 'light' ? button.dataset.toDark : button.dataset.toLight) ?? '');
+  };
+
+  apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  button?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    apply(next);
+    try {
+      localStorage.setItem('tema', next);
+    } catch {
+      // Sin almacenamiento (modo privado estricto): el tema dura hasta cambiar de página.
+    }
+  });
+
+  // Mientras no se elija un tema, se sigue al sistema.
+  system?.addEventListener('change', (event) => {
+    if (!stored()) apply(event.matches ? 'light' : 'dark');
+  });
+</script>
