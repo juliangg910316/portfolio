@@ -1,0 +1,23 @@
+# Formación académica (HU-05). Fuente: CV y nota del portafolio (tesis de máster).
+
+master:
+  order: 1
+  years: 2014–2018
+  institution: Universidad de La Habana
+  degree:
+    es: Máster en Matemáticas
+    pt: Mestrado em Matemática
+    en: Master's in Mathematics
+  detail:
+    es: Especialización en criptografía. Tesis sobre un generador de números pseudoaleatorios en Java (entropía, AES y tests estadísticos).
+    pt: Especialização em criptografia. Dissertação sobre um gerador de números pseudoaleatórios em Java (entropia, AES e testes estatísticos).
+    en: Specialization in cryptography. Thesis on a pseudorandom number generator in Java (entropy, AES and statistical tests).
+
+licenciatura:
+  order: 2
+  years: 2009–2014
+  institution: Universidad de La Habana
+  degree:
+    es: Licenciatura en Matemáticas
+    pt: Licenciatura em Matemática
+    en: Bachelor's in Mathematics

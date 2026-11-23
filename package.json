@@ -15,7 +15,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:all": "npm run test && npm run test:e2e",
-    "og": "node scripts/og.ts"
+    "og": "node scripts/og.ts",
+    "cv": "astro build && node scripts/cv.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",

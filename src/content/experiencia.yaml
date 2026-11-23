@@ -1,0 +1,149 @@
+# Trayectoria profesional (HU-05). Alimenta /experiencia/ y el CV en PDF (npm run cv).
+# Fuentes: CV, nota del portafolio (fechas de Google Sites) y datos extra de XETID.
+# `order`: de la más reciente a la más antigua (el trabajo principal, CCONet, va primero aunque SCA empezó después).
+# Fechas en AAAA-MM; sin `end`, es el trabajo actual. Entre 2 y 4 logros por experiencia.
+
+cconet:
+  order: 1
+  company: CCONet Sistemas
+  start: '2025-06'
+  role:
+    es: Mobile Tech Lead
+    pt: Mobile Tech Lead
+    en: Mobile Tech Lead
+  location:
+    es: Curitiba, Brasil · Híbrido
+    pt: Curitiba, Brasil · Híbrido
+    en: Curitiba, Brazil · Hybrid
+  achievements:
+    - es: Lidero un equipo de 4 desarrolladores en proyectos Flutter con Clean Architecture, centrados en el rendimiento y la mantenibilidad.
+      pt: Lidero uma equipe de 4 desenvolvedores em projetos Flutter com Clean Architecture, com foco em performance e manutenibilidade.
+      en: I lead a team of 4 developers on Flutter projects with Clean Architecture, focused on performance and maintainability.
+    - es: Soy responsable de las apps principales, CCONet y 153 Cidadão, dentro de un portafolio de unas 10 apps.
+      pt: Sou responsável pelos apps principais, CCONet e 153 Cidadão, num portfólio de cerca de 10 apps.
+      en: I'm responsible for the main apps, CCONet and 153 Cidadão, within a portfolio of about 10 apps.
+    - es: Tomo las decisiones de arquitectura, hago code review y mentoría, y defino los estándares de desarrollo del equipo.
+      pt: Tomo as decisões de arquitetura, faço code review e mentoria e defino os padrões de desenvolvimento da equipe.
+      en: I make the architecture decisions, do code reviews and mentoring, and set the team's development standards.
+    - es: Integro el desarrollo asistido por IA (LLMs y agentes) para acelerar las entregas y reducir el código repetitivo.
+      pt: Integro o desenvolvimento assistido por IA (LLMs e agentes) para acelerar as entregas e reduzir o código repetitivo.
+      en: I bring AI-assisted development (LLMs and agents) into the workflow to ship faster and cut boilerplate.
+
+sca:
+  order: 2
+  company: SCA (freelance)
+  start: '2026-05'
+  role:
+    es: Desarrollador móvil y backend
+    pt: Desenvolvedor mobile e backend
+    en: Mobile and backend developer
+  location:
+    es: Houston, EE. UU. · Remoto
+    pt: Houston, EUA · Remoto
+    en: Houston, USA · Remote
+  achievements:
+    - es: Desarrollo de principio a fin la app Flutter (Android e iOS) de control de asistencia con foto y GPS para una empresa de seguridad privada.
+      pt: Desenvolvo de ponta a ponta o app Flutter (Android e iOS) de controle de presença com foto e GPS para uma empresa de segurança privada.
+      en: I build the Flutter attendance app (Android and iOS) end to end, with photo and GPS check-in, for a private security company.
+    - es: Arquitectura en capas con Cubit + Freezed, get_it, Retrofit + Dio, GoRouter y errores con fpdart.
+      pt: Arquitetura em camadas com Cubit + Freezed, get_it, Retrofit + Dio, GoRouter e erros com fpdart.
+      en: Layered architecture with Cubit + Freezed, get_it, Retrofit + Dio, GoRouter and errors with fpdart.
+    - es: Colaboro en el backend NestJS + Prisma + PostgreSQL, con más de 100 commits en las APIs que usa la app.
+      pt: Colaboro no backend NestJS + Prisma + PostgreSQL, com mais de 100 commits nas APIs usadas pelo app.
+      en: I contribute to the NestJS + Prisma + PostgreSQL backend, with over 100 commits on the APIs the app uses.
+
+treew:
+  order: 3
+  company: Treew
+  start: '2024-01'
+  end: '2025-02'
+  role:
+    es: Desarrollador Flutter
+    pt: Desenvolvedor Flutter
+    en: Flutter developer
+  location:
+    es: Ontario, Canadá · Remoto
+    pt: Ontário, Canadá · Remoto
+    en: Ontario, Canada · Remote
+  achievements:
+    - es: Empecé desde cero SuperPay23, una app fintech con tarjetas Visa, KYC, doble factor y pagos con QR.
+      pt: Comecei do zero o SuperPay23, um app fintech com cartões Visa, KYC, dois fatores e pagamentos por QR.
+      en: I started SuperPay23 from scratch, a fintech app with Visa cards, KYC, two-factor authentication and QR payments.
+    - es: Desarrollé la app de logística Centro de Distribución, con lectura de códigos, OCR y modo sin conexión.
+      pt: Desenvolvi o app de logística Centro de Distribuição, com leitura de códigos, OCR e modo offline.
+      en: I built the Distribution Center logistics app, with barcode reading, OCR and offline mode.
+    - es: Trabajé en remoto con un equipo de producto canadiense en todo el ciclo, con Clean Architecture y Bloc.
+      pt: Trabalhei em remoto com uma equipe de produto canadense em todo o ciclo, com Clean Architecture e Bloc.
+      en: I worked remotely with a Canadian product team across the whole cycle, using Clean Architecture and Bloc.
+
+dofleini:
+  order: 4
+  company: Dofleini Software
+  start: '2023-04'
+  end: '2023-12'
+  role:
+    es: Desarrollador full-stack (Flutter · React · NestJS)
+    pt: Desenvolvedor full-stack (Flutter · React · NestJS)
+    en: Full-stack developer (Flutter · React · NestJS)
+  location:
+    es: La Habana, Cuba · Presencial
+    pt: Havana, Cuba · Presencial
+    en: Havana, Cuba · On-site
+  achievements:
+    - es: Creé apps Flutter desde cero con Clean Architecture, como DenunciApp y MiCerveza-Desafío.
+      pt: Criei apps Flutter do zero com Clean Architecture, como DenunciApp e MiCerveza-Desafío.
+      en: I built Flutter apps from scratch with Clean Architecture, such as DenunciApp and MiCerveza-Desafío.
+    - es: Desarrollé APIs REST con NestJS y Node.js.
+      pt: Desenvolvi APIs REST com NestJS e Node.js.
+      en: I built REST APIs with NestJS and Node.js.
+    - es: Construí interfaces web con React, del modelo de datos a la interfaz.
+      pt: Construí interfaces web com React, do modelo de dados à interface.
+      en: I built web interfaces with React, from the data model to the UI.
+
+dspot:
+  order: 5
+  company: DSpot
+  start: '2022-06'
+  end: '2022-12'
+  role:
+    es: Desarrollador Android
+    pt: Desenvolvedor Android
+    en: Android developer
+  location:
+    es: Polonia · Remoto
+    pt: Polônia · Remoto
+    en: Poland · Remote
+  achievements:
+    - es: Trabajé en Bowling App, que registra automáticamente las puntuaciones de boliche y envía las estadísticas al móvil.
+      pt: Trabalhei no Bowling App, que registra automaticamente as pontuações do boliche e envia as estatísticas ao celular.
+      en: I worked on Bowling App, which automatically records bowling scores and sends the stats to the phone.
+    - es: Rediseñé la interfaz de la app junto con otros 2 desarrolladores Android.
+      pt: Redesenhei a interface do app junto com outros 2 desenvolvedores Android.
+      en: I redesigned the app's interface together with 2 other Android developers.
+    - es: Trabajé con Scrum en un equipo internacional, en distintas zonas horarias.
+      pt: Trabalhei com Scrum numa equipe internacional, em fusos horários diferentes.
+      en: I worked with Scrum in an international team across time zones.
+
+xetid:
+  order: 6
+  company: XETID
+  start: '2014-09'
+  end: '2022-06'
+  role:
+    es: Desarrollador Android
+    pt: Desenvolvedor Android
+    en: Android developer
+  location:
+    es: La Habana, Cuba
+    pt: Havana, Cuba
+    en: Havana, Cuba
+  achievements:
+    - es: Fui miembro fundador y desarrollador móvil principal de ENZONA, la plataforma nacional de pagos de Cuba, durante casi 8 años.
+      pt: Fui membro fundador e desenvolvedor mobile principal do ENZONA, a plataforma nacional de pagamentos de Cuba, por quase 8 anos.
+      en: I was a founding member and the lead mobile developer of ENZONA, Cuba's national payments platform, for almost 8 years.
+    - es: Diseñé la arquitectura Android con MVVM y Java, con base de datos cifrada (SQLCipher) y mensajería en tiempo real (MQTT y Smack).
+      pt: Projetei a arquitetura Android com MVVM e Java, com banco de dados criptografado (SQLCipher) e mensagens em tempo real (MQTT e Smack).
+      en: I designed the Android architecture with MVVM and Java, with an encrypted database (SQLCipher) and real-time messaging (MQTT and Smack).
+    - es: Trabajé en un proyecto PKI con BouncyCastle (Java) y en reconocimiento facial con MATLAB, Kinect y machine learning.
+      pt: Trabalhei num projeto PKI com BouncyCastle (Java) e em reconhecimento facial com MATLAB, Kinect e machine learning.
+      en: I worked on a PKI project with BouncyCastle (Java) and on facial recognition with MATLAB, Kinect and machine learning.

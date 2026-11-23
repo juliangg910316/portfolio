@@ -43,4 +43,42 @@ const casos = defineCollection({
   schema: z.object({}),
 });
 
-export const collections = { proyectos, casos };
+const mes = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'Formato AAAA-MM');
+
+// Trayectoria (HU-05): src/content/experiencia.yaml. Alimenta /experiencia/ y el CV en PDF.
+const experiencia = defineCollection({
+  loader: file('src/content/experiencia.yaml'),
+  schema: z.object({
+    order: z.number().int(),
+    company: z.string().min(1),
+    start: mes,
+    /** Sin fin: trabajo actual. */
+    end: mes.optional(),
+    role: texto,
+    location: texto,
+    achievements: z.array(texto).min(2).max(4),
+  }),
+});
+
+const formacion = defineCollection({
+  loader: file('src/content/formacion.yaml'),
+  schema: z.object({
+    order: z.number().int(),
+    years: z.string().min(1),
+    institution: z.string().min(1),
+    degree: texto,
+    detail: texto.optional(),
+  }),
+});
+
+const certificaciones = defineCollection({
+  loader: file('src/content/certificaciones.yaml'),
+  schema: z.object({
+    order: z.number().int(),
+    name: z.union([z.string().min(1), texto]),
+    platform: z.string().min(1),
+    date: mes,
+  }),
+});
+
+export const collections = { proyectos, casos, experiencia, formacion, certificaciones };

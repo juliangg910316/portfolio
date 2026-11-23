@@ -25,7 +25,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'es', locales: { es: 'es', pt: 'pt', en: 'en' } },
-      filter: (page) => !/\/404\/?$/.test(new URL(page).pathname),
+      // Fuera del sitemap: los 404 y el CV imprimible (noindex).
+      filter: (page) => !/\/(404|cv)\/?$/.test(new URL(page).pathname),
     }),
     localized404(['pt', 'en']),
   ],

@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { formatMonth } from '../lib/dates';
+import { localize } from '../lib/projects';
+
+// Sección «Formación» del inicio (HU-05, CA5): certificados + tarjeta de educación.
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const certs = (await getCollection('certificaciones')).sort((a, b) => a.data.order - b.data.order);
+const [master, ...rest] = (await getCollection('formacion')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section aria-labelledby="formacion-inicio-titulo" class="mx-auto max-w-[1200px] px-4 pb-26 sm:px-6">
+  <div class="flex flex-wrap items-stretch gap-14">
+    <div class="min-w-0 flex-[1_1_420px]">
+      <p class="text-[13px] font-semibold tracking-[0.12em] text-sky uppercase">{t('edu.eyebrow')}</p>
+      <h2 id="formacion-inicio-titulo" class="mt-2.5 font-display text-[30px] leading-[1.1] font-bold text-ink sm:text-[40px]">
+        {t('edu.title')}
+      </h2>
+      <ul aria-label={t('edu.certs')} class="mt-6 flex flex-col gap-3">
+        {
+          certs.map((c) => (
+            <li class="flex items-center gap-4 rounded-2xl border border-border bg-surface px-4 py-4 sm:px-5">
+              <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-xl bg-primary-deep/40 text-link">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="9" r="6" />
+                  <path d="m9 14-2 7 5-3 5 3-2-7" />
+                </svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="font-semibold text-ink">{localize(c.data.name, lang)}</p>
+                <p class="mt-0.5 text-sm text-ink-muted">
+                  {c.data.platform} · <time datetime={c.data.date}>{formatMonth(c.data.date, lang)}</time>
+                </p>
+              </div>
+              <span class="hidden flex-none rounded-full border border-success/60 px-3 py-1 text-xs font-semibold text-success sm:inline">
+                {t('edu.badge')}
+              </span>
+              <span class="sr-only sm:hidden">{t('edu.badge')}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="flex min-w-0 flex-[1_1_420px] items-center justify-center">
+      {
+        master && (
+          <div data-testid="educacion" class="w-full max-w-[420px] rounded-[28px] border border-border bg-surface p-8 sm:p-9">
+            <span aria-hidden="true" class="flex size-14 items-center justify-center rounded-2xl bg-primary text-white">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m2 9 10-5 10 5-10 5z" />
+                <path d="M6 11v5c3 2 9 2 12 0v-5" />
+              </svg>
+            </span>
+            <p class="mt-5 text-[13px] font-semibold tracking-[0.12em] text-sky uppercase">{t('edu.card')}</p>
+            <p class="mt-2 font-display text-[26px] leading-tight font-bold text-ink">{master.data.degree[lang]}</p>
+            {master.data.detail && <p class="mt-2 text-[15px] leading-relaxed text-ink-soft">{master.data.detail[lang]}</p>}
+            <p class="mt-4 text-sm text-ink-muted">
+              {master.data.institution} · {master.data.years}
+            </p>
+            {rest.map((e) => (
+              <Fragment>
+                <div class="my-5 h-px bg-border" />
+                <p class="text-sm text-ink-muted">
+                  {e.data.degree[lang]} · {e.data.years}
+                </p>
+              </Fragment>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

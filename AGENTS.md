@@ -37,6 +37,7 @@ Ciclo por historia:
 | `npm run test:e2e` | Build + tests e2e (Playwright, escritorio y móvil) |
 | `npm run check` | Comprobación de tipos de Astro |
 | `npm run og` | Regenera las imágenes Open Graph (`public/og/<lang>.png`) |
+| `npm run cv` | Regenera el CV en PDF de cada idioma (`public/cv/julian-gutierrez-<lang>.pdf`) |
 
 ## Estructura
 

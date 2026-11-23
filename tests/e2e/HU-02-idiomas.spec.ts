@@ -17,6 +17,9 @@ const paginas: Array<{ path: string; lang: Lang; base: string }> = [
   { path: '/en/proyectos/', lang: 'en', base: '/proyectos/' },
 ];
 
+/** Nombres propios del contenido que coinciden con textos de la interfaz de otro idioma. */
+const nombresPropios = ['Flutter Experience'];
+
 const enIdioma = (base: string, lang: Lang) => (lang === 'es' ? base : `/${lang}${base}`);
 
 function selector(page: Page, lang: Lang) {
@@ -93,8 +96,9 @@ test.describe('HU-02 · Idiomas', () => {
         const descripcion = document.querySelector('meta[name="description"]')?.getAttribute('content');
         return [document.body.innerText, document.title, descripcion, ...etiquetas].join('\n');
       });
+      const sinNombres = nombresPropios.reduce((texto, nombre) => texto.replaceAll(nombre, ''), textos);
       for (const ajeno of textosAjenos(lang)) {
-        expect(textos, `"${ajeno}" no debería aparecer en ${path}`).not.toContain(ajeno);
+        expect(sinNombres, `"${ajeno}" no debería aparecer en ${path}`).not.toContain(ajeno);
       }
     });
   }

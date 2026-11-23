@@ -17,6 +17,11 @@
   --color-link: #7fd3ff;
   --color-success: #6ee7a8;
   --color-warning: #ffd666;
+
+  /* Papel: CV imprimible y PDF (HU-05), a partir de la propuesta B. */
+  --color-paper: #ffffff;
+  --color-paper-ink: #0b1b2b;
+  --color-paper-muted: #44576b;
 }
 
 html {

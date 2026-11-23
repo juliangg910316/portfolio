@@ -1,0 +1,145 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { social } from '../i18n/links';
+import { formatMonth, formatPeriod } from '../lib/dates';
+import { localize } from '../lib/projects';
+import type { UiKey } from '../i18n/ui';
+
+// CV imprimible (HU-05). `npm run cv` lo convierte en public/cv/julian-gutierrez-<lang>.pdf.
+// No se indexa ni va al sitemap. Es la única página con el email (decisión de Julian, 2026-11-23).
+const EMAIL = 'juliangg910316@gmail.com';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const jobs = (await getCollection('experiencia')).sort((a, b) => a.data.order - b.data.order);
+const education = (await getCollection('formacion')).sort((a, b) => a.data.order - b.data.order);
+const certs = (await getCollection('certificaciones')).sort((a, b) => a.data.order - b.data.order);
+const web = new URL(localizePath('/', lang), Astro.site);
+const skills: UiKey[] = [
+  'cv.skills.mobile',
+  'cv.skills.state',
+  'cv.skills.backend',
+  'cv.skills.security',
+  'cv.skills.ai',
+  'cv.skills.practices',
+];
+const h2 = 'mt-7 border-b border-primary-deep/30 pb-1 font-display text-[13px] font-bold tracking-[0.12em] text-primary-deep uppercase';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{t('cv.meta.title')}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: A4;
+        margin: 14mm 14mm 16mm;
+      }
+      @media print {
+        .cv {
+          padding: 0;
+          max-width: none;
+        }
+        li,
+        .bloque {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-paper text-paper-ink antialiased">
+    <main class="cv mx-auto max-w-[820px] px-6 py-10 text-[12.5px] leading-[1.5]">
+      <header>
+        <h1 class="font-display text-[30px] leading-tight font-bold">Julian Gutierrez Garcia</h1>
+        <p class="mt-1 font-display text-[15px] font-medium text-primary-deep">{t('hero.role')}</p>
+        <p class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-paper-muted">
+          <span>Curitiba, PR, Brasil</span>
+          <a class="text-primary-deep underline" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <a class="text-primary-deep underline" href={social.linkedin}>{social.linkedin.replace('https://www.', '')}</a>
+          <a class="text-primary-deep underline" href={social.github}>{social.github.replace('https://', '')}</a>
+          <a class="text-primary-deep underline" href={web.href}>{web.host}</a>
+        </p>
+      </header>
+
+      <section aria-labelledby="cv-perfil">
+        <h2 id="cv-perfil" class={h2}>{t('cv.summary.title')}</h2>
+        <p class="mt-2">{t('cv.summary')}</p>
+      </section>
+
+      <section aria-labelledby="cv-experiencia">
+        <h2 id="cv-experiencia" class={h2}>{t('cv.experience.title')}</h2>
+        <ol class="mt-1">
+          {
+            jobs.map((job) => (
+              <li class="bloque mt-3">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                  <h3 class="font-display text-[14px] font-bold">
+                    {job.data.role[lang]} · <span class="text-primary-deep">{job.data.company}</span>
+                  </h3>
+                  <p class="text-paper-muted">{formatPeriod(job.data.start, job.data.end, lang)}</p>
+                </div>
+                <p class="text-paper-muted">{job.data.location[lang]}</p>
+                <ul class="mt-1 list-disc pl-5">
+                  {job.data.achievements.map((a) => (
+                    <li>{a[lang]}</li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section aria-labelledby="cv-formacion" class="bloque">
+        <h2 id="cv-formacion" class={h2}>{t('exp.education')}</h2>
+        <ul class="mt-2 space-y-1.5">
+          {
+            education.map((e) => (
+              <li>
+                <strong>{e.data.degree[lang]}</strong> · {e.data.institution} · {e.data.years}
+                {e.data.detail && <span class="block text-paper-muted">{e.data.detail[lang]}</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="cv-competencias" class="bloque">
+        <h2 id="cv-competencias" class={h2}>{t('cv.skills.title')}</h2>
+        <ul class="mt-2 space-y-1">
+          {skills.map((k) => <li>{t(k)}</li>)}
+        </ul>
+      </section>
+
+      <section aria-labelledby="cv-certificaciones" class="bloque">
+        <h2 id="cv-certificaciones" class={h2}>{t('cv.certs.title')}</h2>
+        <ul class="mt-2 space-y-1">
+          {
+            certs.map((c) => (
+              <li>
+                <strong>{localize(c.data.name, lang)}</strong> · {c.data.platform} · {formatMonth(c.data.date, lang)}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="cv-idiomas" class="bloque">
+        <h2 id="cv-idiomas" class={h2}>{t('cv.languages.title')}</h2>
+        <p class="mt-2">{t('cv.languages')}</p>
+      </section>
+    </main>
+  </body>
+</html>

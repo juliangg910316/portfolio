@@ -1,0 +1,35 @@
+# Certificados de cursos (HU-05). Fuente: nota «Certificados de cursos» del vault y el CV.
+# Los nombres de los cursos van en su idioma original; `date` en AAAA-MM.
+
+flutter-experience:
+  order: 1
+  name: Flutter Experience
+  platform: Academia do Flutter
+  date: '2026-10'
+
+academia-das-ias:
+  order: 2
+  name:
+    es: IA aplicada al desarrollo de software (4 cursos · 23 h)
+    pt: IA aplicada ao desenvolvimento de software (4 cursos · 23 h)
+    en: AI applied to software development (4 courses · 23 h)
+  platform: Academia das IAs
+  date: '2026-05'
+
+big-school-agentes:
+  order: 3
+  name: Desarrollo con IA · Programa con Agentes
+  platform: BIG school
+  date: '2026-06'
+
+devtalles-prompts:
+  order: 4
+  name: Ingeniería de Prompts
+  platform: DevTalles
+  date: '2026-05'
+
+domina-kotlin:
+  order: 5
+  name: Domina Kotlin
+  platform: LinkedIn Learning
+  date: '2025-07'

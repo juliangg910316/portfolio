@@ -19,6 +19,8 @@ Elegida el 2026-11-20. Lienzo con las 3 propuestas: https://claude.ai/artifact/M
 | `success` | `#6EE7A8` | Insignia "Certificado" |
 | `warning` | `#FFD666` | Etiqueta "App interna", icono de sol |
 
+**Papel** (CV imprimible y PDF, HU-05): `paper` `#FFFFFF`, `paper-ink` `#0B1B2B`, `paper-muted` `#44576B`, con `primary-deep` para títulos y enlaces.
+
 Modo claro (HU-11): pendiente, a partir de la propuesta B (fondo `#FFFFFF`/`#F2F7FC`, texto `#0B1B2B`, acento `#0175C2`, eyebrows `#02569B`).
 
 ## Tipografía
