@@ -1,0 +1,129 @@
+# Servicios (HU-06). Sin precios por ahora (decisión pendiente).
+# `example.path` es una ruta sin prefijo de idioma; cada ejemplo es un proyecto real de proyectos.yaml.
+
+flutter:
+  order: 1
+  title:
+    es: Apps Flutter de principio a fin
+    pt: Apps Flutter de ponta a ponta
+    en: End-to-end Flutter apps
+  summary:
+    es: Una app para Android e iOS (y web si hace falta) con un solo código, desde la idea hasta la publicación en las tiendas.
+    pt: Um app para Android e iOS (e web, se precisar) com um só código, da ideia até a publicação nas lojas.
+    en: One app for Android and iOS (and the web if needed) from a single codebase, from the idea to the store release.
+  includes:
+    - es: Arquitectura y modelo de datos pensados para crecer.
+      pt: Arquitetura e modelo de dados pensados para crescer.
+      en: Architecture and data model built to grow.
+    - es: Desarrollo con Clean Architecture y tests.
+      pt: Desenvolvimento com Clean Architecture e testes.
+      en: Development with Clean Architecture and tests.
+    - es: Integración con tu backend o creación de uno (NestJS, Firebase o Supabase).
+      pt: Integração com o seu backend ou criação de um (NestJS, Firebase ou Supabase).
+      en: Integration with your backend, or a new one (NestJS, Firebase or Supabase).
+    - es: Publicación en Google Play y App Store.
+      pt: Publicação no Google Play e na App Store.
+      en: Release on Google Play and the App Store.
+  example:
+    name: SCA
+    path: /proyectos/sca/
+    note:
+      es: app de asistencia con foto y GPS para una empresa de seguridad.
+      pt: app de presença com foto e GPS para uma empresa de segurança.
+      en: attendance app with photo and GPS for a security company.
+
+mvp:
+  order: 2
+  title:
+    es: MVP para startups
+    pt: MVP para startups
+    en: MVPs for startups
+  summary:
+    es: Una primera versión que ya se puede usar, con lo justo para validar la idea con usuarios reales y crecer sin rehacerla.
+    pt: Uma primeira versão que já pode ser usada, com o essencial para validar a ideia com usuários reais e crescer sem refazer.
+    en: A first version people can already use, with just enough to validate the idea with real users and grow without a rewrite.
+  includes:
+    - es: Definimos juntos el alcance mínimo.
+      pt: Definimos juntos o escopo mínimo.
+      en: We define the minimum scope together.
+    - es: Versiones que puedes probar en tu móvil desde las primeras semanas.
+      pt: Versões que você pode testar no seu celular desde as primeiras semanas.
+      en: Builds you can try on your phone from the first weeks.
+    - es: Backend gestionado (Firebase o Supabase) para empezar rápido.
+      pt: Backend gerenciado (Firebase ou Supabase) para começar rápido.
+      en: Managed backend (Firebase or Supabase) to start fast.
+    - es: Base preparada para crecer, con arquitectura y tests.
+      pt: Base pronta para crescer, com arquitetura e testes.
+      en: A foundation ready to grow, with architecture and tests.
+  example:
+    name: Studio Shaddai
+    path: /proyectos/studio-shaddai/
+    note:
+      es: reservas y panel de administración para un estudio de Curitiba.
+      pt: reservas e painel de administração para um estúdio de Curitiba.
+      en: bookings and an admin panel for a studio in Curitiba.
+
+arquitectura:
+  order: 3
+  title:
+    es: Consultoría de arquitectura
+    pt: Consultoria de arquitetura
+    en: Architecture consulting
+  summary:
+    es: Reviso tu app y tu forma de trabajar, y propongo cómo organizar el código para que sea fácil de mantener, probar y hacer crecer.
+    pt: Reviso o seu app e a forma de trabalhar, e proponho como organizar o código para que seja fácil de manter, testar e evoluir.
+    en: I review your app and your workflow, and propose how to organize the code so it's easy to maintain, test and grow.
+  includes:
+    - es: Revisión del código y de la arquitectura actual.
+      pt: Revisão do código e da arquitetura atual.
+      en: A review of the current code and architecture.
+    - es: Propuesta de capas, gestión de estado y navegación.
+      pt: Proposta de camadas, gerenciamento de estado e navegação.
+      en: A proposal for layers, state management and navigation.
+    - es: Estándares, code review y guía para tu equipo.
+      pt: Padrões, code review e orientação para a sua equipe.
+      en: Standards, code reviews and guidance for your team.
+    - es: Desarrollo asistido por IA integrado en el flujo del equipo.
+      pt: Desenvolvimento assistido por IA integrado ao fluxo da equipe.
+      en: AI-assisted development built into the team's workflow.
+  example:
+    name: SuperPay23
+    path: /proyectos/superpay23/
+    note:
+      es: fintech que empecé desde cero, con Bloc y GoRouter.
+      pt: fintech que comecei do zero, com Bloc e GoRouter.
+      en: a fintech app I started from scratch, with Bloc and GoRouter.
+
+migracion:
+  order: 4
+  title:
+    es: Migración a Flutter
+    pt: Migração para Flutter
+    en: Migration to Flutter
+  summary:
+    es: Paso tu app de Android nativo o React Native a Flutter para tener un solo código en Android e iOS.
+    pt: Migro o seu app de Android nativo ou React Native para Flutter, para ter um só código no Android e no iOS.
+    en: I move your native Android or React Native app to Flutter, so you have a single codebase for Android and iOS.
+  includes:
+    - es: Análisis de la app actual y plan de migración por partes.
+      pt: Análise do app atual e plano de migração por etapas.
+      en: An analysis of the current app and a step-by-step migration plan.
+    - es: Reescritura en Flutter con las mismas funciones y datos.
+      pt: Reescrita em Flutter com as mesmas funções e dados.
+      en: A Flutter rewrite with the same features and data.
+    - es: Tests para comprobar que todo sigue funcionando.
+      pt: Testes para garantir que tudo continua funcionando.
+      en: Tests to check that everything still works.
+    - es: Publicación de la nueva versión en las tiendas.
+      pt: Publicação da nova versão nas lojas.
+      en: Release of the new version on the stores.
+  example:
+    name:
+      es: Apps de CCONet
+      pt: Apps da CCONet
+      en: CCONet apps
+    path: /proyectos/#cconet
+    note:
+      es: migraciones de React Native y de Android nativo a Flutter.
+      pt: migrações de React Native e de Android nativo para Flutter.
+      en: migrations from React Native and native Android to Flutter.

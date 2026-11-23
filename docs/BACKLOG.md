@@ -12,7 +12,7 @@ Estado: ⬜ pendiente · 🟦 en curso · ✅ hecha. Orden de trabajo de arriba 
 | ✅ | [HU-05](historias/HU-05-trayectoria-cv.md) | Trayectoria y CV | Alta |
 | ✅ | [HU-07](historias/HU-07-contacto.md) | Formulario de contacto | Alta |
 | ✅ | [HU-11](historias/HU-11-tema.md) | Modo claro y oscuro | Media |
-| ⬜ | [HU-06](historias/HU-06-servicios.md) | Servicios | Media |
+| ✅ | [HU-06](historias/HU-06-servicios.md) | Servicios | Media |
 | ⬜ | [HU-10](historias/HU-10-sobre-mi.md) | Sobre mí | Media |
 | ⬜ | [HU-09](historias/HU-09-como-trabajo.md) | Cómo trabajo con IA | Media |
 | ⬜ | [HU-08](historias/HU-08-blog.md) | Blog | Media |

@@ -2,13 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { getContactPath, getCvPath, getNavItems } from '../../src/i18n/links';
 
 describe('getNavItems', () => {
-  it('devuelve los 6 enlaces del menú en orden', () => {
+  it('devuelve los 7 enlaces del menú en orden', () => {
     expect(getNavItems('es').map((i) => i.key)).toEqual([
       'nav.home',
       'nav.about',
       'nav.projects',
       'nav.experience',
       'nav.blog',
+      'nav.services',
       'nav.contact',
     ]);
   });
@@ -19,13 +20,14 @@ describe('getNavItems', () => {
       '/proyectos/',
       '/experiencia/',
       '/blog/',
+      '/servicios/',
       '/contacto/',
     ]);
   });
   it('añade el prefijo de idioma en pt y en', () => {
     expect(getNavItems('pt')[0]!.href).toBe('/pt/');
     expect(getNavItems('en')[1]!.href).toBe('/en/#sobre-mi');
-    expect(getNavItems('en')[5]!.href).toBe('/en/contacto/');
+    expect(getNavItems('en')[6]!.href).toBe('/en/contacto/');
   });
 });
 
@@ -41,5 +43,9 @@ describe('getContactPath', () => {
   it('lleva a contacto en el idioma actual', () => {
     expect(getContactPath('es')).toBe('/contacto/');
     expect(getContactPath('pt')).toBe('/pt/contacto/');
+  });
+  it('puede llevar el motivo preseleccionado', () => {
+    expect(getContactPath('es', 'proyecto')).toBe('/contacto/?motivo=proyecto');
+    expect(getContactPath('en', 'empleo')).toBe('/en/contacto/?motivo=empleo');
   });
 });

@@ -3,7 +3,7 @@
 ## Estado (2026-11-23)
 - Repo creado: Astro 7 + TypeScript estricto + Tailwind v4, i18n ES/PT/EN, Vitest y Playwright (+ axe).
 - Tokens de la propuesta A en `src/styles/global.css`.
-- Backlog de 13 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio), ✅ HU-05 (trayectoria y CV), ✅ HU-07 (contacto), ✅ HU-11 (tema). **Siguiente: HU-06 (servicios).**
+- Backlog de 13 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio), ✅ HU-05 (trayectoria y CV), ✅ HU-07 (contacto), ✅ HU-11 (tema), ✅ HU-06 (servicios). **Siguiente: HU-10 (sobre mí).**
 - Casos de estudio con huecos `[PENDIENTE: …]` (ES/PT/EN): `grep -rn PENDIENTE src/content/casos/es` para ver la lista. Al rellenarlos, cambiar los 3 idiomas.
 - Marcadores `[PENDIENTE]` en la web: foto (`About.astro`), WhatsApp (`social.whatsapp` en `src/i18n/links.ts`, hoy `https://wa.me/PENDIENTE`).
 - CV en PDF: **generado** con `npm run cv` desde `/cv/` (datos de `experiencia.yaml`, `formacion.yaml`, `certificaciones.yaml` y las claves `cv.*` de `ui.ts`). La página `/cv/` solo existe con `CV_PRINT=1`; no se publica. Volver a ejecutarlo y hacer commit de `public/cv/` cada vez que cambien esos datos.
@@ -15,6 +15,7 @@
 - Pendiente: comprar el dominio y cambiar `site` en `astro.config.mjs` → después **`npm run og`** (la URL sale en la imagen). `robots.txt`, sitemap, canonical y OG toman `site` solos.
 
 ## Decisiones
+- 2026-11-23 (HU-06): «Servicios» en el menú; ejemplo de migración = apps de CCONet (React Native y Android nativo → Flutter, dato de Julian); sin precios.
 - 2026-11-23 (HU-11): tema en `data-theme` con script en línea en `<head>`; elección guardada > sistema > oscuro; tokens claros en `global.css` con los mismos nombres.
 - 2026-11-23 (HU-07): Pages Function + Resend; antispam con campo trampa + tiempo mínimo (sin Turnstile); `/cv/` deja de publicarse, el email solo está en los PDF.
 - 2026-11-23 (HU-05): el CV en PDF se genera desde la web (una sola fuente); el email solo aparece en `/cv/` y en los PDF (noindex, fuera del sitemap), nunca en las demás páginas.

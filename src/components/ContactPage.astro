@@ -166,6 +166,11 @@ const notice = 'hidden rounded-2xl border px-5 py-4 text-[16px] leading-relaxed 
 
     form.noValidate = true;
 
+    // ?motivo=proyecto (desde Servicios, HU-06) deja elegido ese motivo.
+    const reason = new URLSearchParams(location.search).get('motivo');
+    const select = form.querySelector<HTMLSelectElement>('select[name="reason"]')!;
+    if (reason && [...select.options].some((o) => o.value === reason && o.value !== '')) select.value = reason;
+
     const showError = (name: ContactField, error: ContactError | undefined) => {
       const input = control(name);
       const message = document.getElementById(`${name}-error`)!;

@@ -184,7 +184,7 @@ cconet:
     pt: Liderança técnica · Flutter
     en: Technical leadership · Flutter
   summary:
-    es: Lidero el equipo móvil (4 devs) que mantiene unas 10 apps, entre ellas CCONet y 153 Cidadão. Arquitectura, code review y estándares.
-    pt: Lidero a equipe mobile (4 devs) que mantém cerca de 10 apps, entre eles CCONet e 153 Cidadão. Arquitetura, code review e padrões.
-    en: I lead the mobile team (4 devs) that maintains about 10 apps, including CCONet and 153 Cidadão. Architecture, code review and standards.
+    es: Lidero el equipo móvil (4 devs) que mantiene unas 10 apps, entre ellas CCONet y 153 Cidadão. Arquitectura, code review, estándares y migraciones de React Native y Android nativo a Flutter.
+    pt: Lidero a equipe mobile (4 devs) que mantém cerca de 10 apps, entre eles CCONet e 153 Cidadão. Arquitetura, code review, padrões e migrações de React Native e Android nativo para Flutter.
+    en: I lead the mobile team (4 devs) that maintains about 10 apps, including CCONet and 153 Cidadão. Architecture, code reviews, standards and migrations from React Native and native Android to Flutter.
   stack: [Flutter, Clean Architecture]

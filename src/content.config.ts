@@ -81,4 +81,21 @@ const certificaciones = defineCollection({
   }),
 });
 
-export const collections = { proyectos, casos, experiencia, formacion, certificaciones };
+// Servicios (HU-06): src/content/servicios.yaml. Cada ejemplo enlaza un proyecto real.
+const servicios = defineCollection({
+  loader: file('src/content/servicios.yaml'),
+  schema: z.object({
+    order: z.number().int(),
+    title: texto,
+    summary: texto,
+    includes: z.array(texto).min(3).max(5),
+    example: z.object({
+      name: z.union([z.string().min(1), texto]),
+      /** Ruta sin prefijo de idioma, p. ej. /proyectos/sca/ o /proyectos/#cconet. */
+      path: z.string().regex(/^\/proyectos\//),
+      note: texto,
+    }),
+  }),
+});
+
+export const collections = { proyectos, casos, experiencia, formacion, certificaciones, servicios };
