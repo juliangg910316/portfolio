@@ -16,7 +16,7 @@
     "test:e2e": "playwright test",
     "test:all": "npm run test && npm run test:e2e",
     "og": "node scripts/og.ts",
-    "cv": "astro build && node scripts/cv.ts"
+    "cv": "CV_PRINT=1 astro build && node scripts/cv.ts && astro build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",

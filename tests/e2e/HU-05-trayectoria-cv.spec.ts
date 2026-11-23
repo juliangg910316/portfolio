@@ -68,16 +68,6 @@ test.describe('HU-05 · Trayectoria y CV', () => {
       expect(res.headers()['content-type']).toContain('application/pdf');
       expect((await res.body()).subarray(0, 5).toString()).toBe('%PDF-');
     });
-
-    test(`CA4 la versión imprimible del CV en ${lang} existe, está traducida y no se indexa`, async ({ page }) => {
-      await page.goto(`${prefijo}/cv/`);
-      await expect(page.locator('html')).toHaveAttribute('lang', lang);
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText('Julian Gutierrez Garcia');
-      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
-      await expect(page.getByRole('main')).toContainText('Mobile Tech Lead');
-      await expect(page.getByRole('main')).toContainText('juliangg910316@gmail.com');
-      for (const empresa of empresas) await expect(page.getByRole('main')).toContainText(empresa);
-    });
   }
 
   test('CA5 el inicio muestra las certificaciones con su plataforma y la tarjeta de educación', async ({ page }) => {
@@ -105,17 +95,11 @@ test.describe('HU-05 · Trayectoria y CV', () => {
     });
   }
 
-  test('el email no aparece en las páginas normales, solo en el CV', async ({ page }) => {
-    for (const ruta of ['/', '/experiencia/', '/proyectos/', '/en/experiencia/']) {
-      await page.goto(ruta);
-      expect(await page.content()).not.toContain('@gmail');
-    }
-  });
-
-  test('las páginas del CV no están en el sitemap', async ({ request }) => {
+  test('/experiencia/ está en el sitemap y la página imprimible del CV no se publica (HU-07 CA5)', async ({ request }) => {
     const sitemap = await (await request.get('/sitemap-0.xml')).text();
     expect(sitemap).toContain('/experiencia/</loc>');
     expect(sitemap).not.toMatch(/\/cv\/<\/loc>/);
+    expect((await request.get('/cv/')).status()).toBe(404);
   });
 
   for (const path of ['/experiencia/', '/pt/experiencia/', '/']) {

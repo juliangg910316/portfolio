@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { social } from '../i18n/links';
+import { contactFields, limits, reasons, type ContactError } from '../lib/contact';
+import type { UiKey } from '../i18n/ui';
+
+// Formulario de contacto (HU-07). Sin JavaScript hace un POST normal a /api/contacto, que redirige a
+// #enviado o #error-envio (se muestran con :target). Con JavaScript valida en el navegador y envía con fetch.
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const errorMessages: Record<ContactError, string> = {
+  required: t('contact.error.required'),
+  email: t('contact.error.email'),
+  tooShort: t('contact.error.tooShort'),
+  tooLong: t('contact.error.tooLong'),
+};
+const hasWhatsapp = !social.whatsapp.includes('PENDIENTE');
+const others = [
+  { name: 'LinkedIn', href: social.linkedin },
+  { name: 'GitHub', href: social.github },
+  ...(hasWhatsapp ? [{ name: 'WhatsApp', href: social.whatsapp }] : []),
+];
+const labels: Record<(typeof contactFields)[number], UiKey> = {
+  name: 'contact.name',
+  email: 'contact.email',
+  reason: 'contact.reason',
+  message: 'contact.message',
+};
+const field =
+  'mt-2 block w-full rounded-xl border border-border bg-surface px-4 py-3 text-[16px] text-ink focus:border-sky focus:outline-2 focus:outline-offset-2 focus:outline-sky aria-invalid:border-warning';
+const errorClass = 'mt-1.5 text-sm font-medium text-warning empty:hidden';
+const notice = 'hidden rounded-2xl border px-5 py-4 text-[16px] leading-relaxed target:block focus:outline-2 focus:outline-sky';
+---
+
+<Layout title={t('contact.meta.title')} description={t('contact.lead')}>
+  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+    <h1 class="font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">{t('contact.title')}</h1>
+    <p class="mt-5 max-w-[640px] text-[17px] leading-relaxed text-ink-soft">{t('contact.lead')}</p>
+
+    <div class="mt-12 flex flex-wrap items-start gap-12">
+      <div class="min-w-0 flex-[2_1_480px]">
+        <div id="enviado" role="status" tabindex="-1" class:list={[notice, 'mb-6 border-success/60 bg-surface text-ink']}>
+          {t('contact.success')}
+        </div>
+        <div id="error-envio" role="alert" tabindex="-1" class:list={[notice, 'mb-6 border-warning/60 bg-surface text-ink']}>
+          {t('contact.failure')}{' '}
+          <a href={social.linkedin} rel="noopener" target="_blank" class="font-semibold text-link underline">LinkedIn</a
+          >{
+            hasWhatsapp && (
+              <Fragment>
+                {' · '}
+                <a href={social.whatsapp} rel="noopener" target="_blank" class="font-semibold text-link underline">
+                  WhatsApp
+                </a>
+              </Fragment>
+            )
+          }.
+        </div>
+
+        <form
+          id="form-contacto"
+          action="/api/contacto"
+          method="post"
+          data-errors={JSON.stringify(errorMessages)}
+          data-sending={t('contact.sending')}
+          class="relative grid gap-6 rounded-[28px] border border-border bg-surface/40 p-6 sm:grid-cols-2 sm:p-8"
+        >
+          <input type="hidden" name="lang" value={lang} />
+          <input type="hidden" name="elapsed" value="" />
+
+          <div>
+            <label for="name" class="font-semibold text-ink">{t(labels.name)}</label>
+            <input id="name" name="name" type="text" autocomplete="name" required maxlength={limits.name} aria-describedby="name-error" class={field} />
+            <p id="name-error" class={errorClass}></p>
+          </div>
+
+          <div>
+            <label for="email" class="font-semibold text-ink">{t(labels.email)}</label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength={limits.email} aria-describedby="email-error" class={field} />
+            <p id="email-error" class={errorClass}></p>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="reason" class="font-semibold text-ink">{t(labels.reason)}</label>
+            <select id="reason" name="reason" required aria-describedby="reason-error" class={field}>
+              <option value="">{t('contact.reason.placeholder')}</option>
+              {reasons.map((r) => <option value={r}>{t(`contact.reason.${r}`)}</option>)}
+            </select>
+            <p id="reason-error" class={errorClass}></p>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="message" class="font-semibold text-ink">{t(labels.message)}</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="7"
+              required
+              minlength={limits.messageMin}
+              maxlength={limits.messageMax}
+              aria-describedby="message-error"
+              class:list={[field, 'resize-y']}></textarea>
+            <p id="message-error" class={errorClass}></p>
+          </div>
+
+          <!-- Antispam (CA6): campo trampa. Las personas no lo ven ni llegan a él con el teclado; los bots lo rellenan. -->
+          <div aria-hidden="true" class="absolute -left-[10000px] size-px overflow-hidden">
+            <label for="website">{t('contact.honeypot')}</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <button
+              type="submit"
+              class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-7 text-[15px] font-semibold text-white hover:bg-primary-deep disabled:opacity-70"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                ><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"></path></svg
+              >
+              <span>{t('contact.submit')}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <aside aria-labelledby="otras-formas" class="min-w-0 flex-[1_1_260px]">
+        <h2 id="otras-formas" class="text-[13px] font-semibold tracking-[0.12em] text-sky uppercase">{t('contact.other')}</h2>
+        <ul class="mt-4 flex flex-col gap-3">
+          {
+            others.map((o) => (
+              <li>
+                <a
+                  href={o.href}
+                  rel="me noopener"
+                  target="_blank"
+                  class="flex items-center justify-between rounded-2xl border border-border bg-surface px-5 py-4 font-semibold text-ink hover:border-sky"
+                >
+                  {o.name}
+                  <span aria-hidden="true" class="text-sky">↗</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { contactFields, validateContact, type ContactError, type ContactField } from '../lib/contact';
+
+  const form = document.querySelector<HTMLFormElement>('#form-contacto');
+  if (form) {
+    const loadedAt = Date.now();
+    const messages = JSON.parse(form.dataset.errors ?? '{}') as Record<ContactError, string>;
+    const success = document.getElementById('enviado')!;
+    const failure = document.getElementById('error-envio')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const buttonText = button.querySelector('span')!;
+    const submitLabel = buttonText.textContent ?? '';
+    const control = (name: ContactField) => form.querySelector<HTMLElement>(`[name="${name}"]`)!;
+    const values = () => Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+
+    form.noValidate = true;
+
+    const showError = (name: ContactField, error: ContactError | undefined) => {
+      const input = control(name);
+      const message = document.getElementById(`${name}-error`)!;
+      if (error) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+      message.textContent = error ? messages[error] : '';
+    };
+
+    const show = (notice: HTMLElement | null) => {
+      for (const el of [success, failure]) el.style.display = el === notice ? 'block' : 'none';
+      notice?.focus();
+    };
+
+    // Un campo con error se vuelve a comprobar mientras se corrige.
+    for (const name of contactFields) {
+      const recheck = () => {
+        if (control(name).getAttribute('aria-invalid') !== 'true') return;
+        const result = validateContact(values());
+        showError(name, result.ok ? undefined : result.errors[name]);
+      };
+      control(name).addEventListener('input', recheck);
+      control(name).addEventListener('change', recheck);
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      show(null);
+      const data = values();
+      const result = validateContact(data);
+      for (const name of contactFields) showError(name, result.ok ? undefined : result.errors[name]);
+      if (!result.ok) {
+        const first = contactFields.find((name) => result.errors[name]);
+        if (first) control(first).focus();
+        return;
+      }
+
+      button.disabled = true;
+      buttonText.textContent = form.dataset.sending ?? submitLabel;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, elapsed: String(Math.round((Date.now() - loadedAt) / 1000)) }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show(success);
+      } catch {
+        show(failure);
+      } finally {
+        button.disabled = false;
+        buttonText.textContent = submitLabel;
+      }
+    });
+  }
+</script>

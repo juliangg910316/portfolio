@@ -27,12 +27,12 @@ export function getNavItems(lang: Lang): NavItem[] {
   return navPaths.map(({ key, path }) => ({ key, href: localizePath(path, lang) }));
 }
 
-/** PDF del CV en el idioma dado. [PENDIENTE: subir los PDF a public/cv/] */
+/** PDF del CV en el idioma dado (los genera `npm run cv`). */
 export function getCvPath(lang: Lang): string {
   return `/cv/julian-gutierrez-${lang}.pdf`;
 }
 
-/** Página de contacto en el idioma dado (llega con HU-07). */
+/** Página de contacto en el idioma dado. */
 export function getContactPath(lang: Lang): string {
   return localizePath('/contacto/', lang);
 }

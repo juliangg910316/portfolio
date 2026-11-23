@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import localized404 from './integrations/localized-404.mjs';
+import printOnly from './integrations/print-only.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,9 +26,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'es', locales: { es: 'es', pt: 'pt', en: 'en' } },
-      // Fuera del sitemap: los 404 y el CV imprimible (noindex).
+      // Fuera del sitemap: los 404 y el CV imprimible (que además no se publica).
       filter: (page) => !/\/(404|cv)\/?$/.test(new URL(page).pathname),
     }),
     localized404(['pt', 'en']),
+    // El CV imprimible lleva el email: solo existe para generar los PDF (npm run cv).
+    printOnly(['cv/index.html', 'pt/cv/index.html', 'en/cv/index.html']),
   ],
 });

@@ -47,6 +47,9 @@ src/
   layouts/     Layout.astro: <html lang>, SEO, hreflang, fuentes
   pages/       rutas: index.astro (es), pt/, en/
   styles/      global.css con los tokens del diseño (@theme)
+  lib/         lógica pura (proyectos, fechas, contacto)
+functions/     Cloudflare Pages Functions (api/contacto.ts)
+integrations/  integraciones de Astro propias (404 por idioma, páginas solo para imprimir)
 tests/
   unit/        Vitest
   e2e/         Playwright (+ a11y.ts con axe)

@@ -30,3 +30,6 @@ coverage/
 
 # cloudflare
 .wrangler/
+
+# secretos locales de Wrangler (Pages Functions)
+.dev.vars

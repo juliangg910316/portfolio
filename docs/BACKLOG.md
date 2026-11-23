@@ -10,7 +10,7 @@ Estado: ⬜ pendiente · 🟦 en curso · ✅ hecha. Orden de trabajo de arriba 
 | ✅ | [HU-03](historias/HU-03-proyectos.md) | Listado de proyectos | Alta |
 | ✅ | [HU-04](historias/HU-04-caso-de-estudio.md) | Caso de estudio | Alta |
 | ✅ | [HU-05](historias/HU-05-trayectoria-cv.md) | Trayectoria y CV | Alta |
-| ⬜ | [HU-07](historias/HU-07-contacto.md) | Formulario de contacto | Alta |
+| ✅ | [HU-07](historias/HU-07-contacto.md) | Formulario de contacto | Alta |
 | ⬜ | [HU-11](historias/HU-11-tema.md) | Modo claro y oscuro | Media |
 | ⬜ | [HU-06](historias/HU-06-servicios.md) | Servicios | Media |
 | ⬜ | [HU-10](historias/HU-10-sobre-mi.md) | Sobre mí | Media |

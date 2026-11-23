@@ -1,5 +1,6 @@
 // Genera el CV en PDF de cada idioma en public/cv/julian-gutierrez-<lang>.pdf (HU-05).
-// Uso: npm run cv  (hace el build, sirve dist/ y "imprime" /cv/, /pt/cv/ y /en/cv/ con Chromium).
+// Uso: npm run cv  (build con CV_PRINT=1, sirve dist/ e "imprime" /cv/, /pt/cv/ y /en/cv/ con Chromium;
+// después rehace el build normal, sin esas páginas).
 // Volver a ejecutarlo cuando cambien experiencia.yaml, formacion.yaml, certificaciones.yaml o los textos cv.* de ui.ts.
 import { mkdir } from 'node:fs/promises';
 import { preview } from 'vite';

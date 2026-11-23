@@ -8,7 +8,7 @@ import { localize } from '../lib/projects';
 import type { UiKey } from '../i18n/ui';
 
 // CV imprimible (HU-05). `npm run cv` lo convierte en public/cv/julian-gutierrez-<lang>.pdf.
-// No se indexa ni va al sitemap. Es la única página con el email (decisión de Julian, 2026-11-23).
+// No se publica (integrations/print-only.mjs): el email solo queda en los PDF (HU-07 CA5).
 const EMAIL = 'juliangg910316@gmail.com';
 
 const lang = getLangFromUrl(Astro.url);
