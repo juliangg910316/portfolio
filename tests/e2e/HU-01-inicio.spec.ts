@@ -158,9 +158,9 @@ test.describe('HU-01 · Inicio', () => {
       expect(caja!.height).toBeGreaterThanOrEqual(44);
     }
 
+    // Desde HU-10, «Sobre mí» lleva a su propia página.
     await nav.getByRole('link', { name: 'Sobre mí' }).click();
-    await expect(page).toHaveURL(/#sobre-mi$/);
-    await expect(page.getByRole('region', { name: es.sobreMi })).toBeInViewport();
+    await expect(page).toHaveURL(/\/sobre-mi\/$/);
   });
 
   for (const c of [pt, en]) {

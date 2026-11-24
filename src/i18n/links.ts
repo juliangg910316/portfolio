@@ -16,7 +16,7 @@ export interface NavItem {
 
 const navPaths: ReadonlyArray<{ key: UiKey; path: string }> = [
   { key: 'nav.home', path: '/' },
-  { key: 'nav.about', path: '/#sobre-mi' },
+  { key: 'nav.about', path: '/sobre-mi/' },
   { key: 'nav.projects', path: '/proyectos/' },
   { key: 'nav.experience', path: '/experiencia/' },
   { key: 'nav.blog', path: '/blog/' },

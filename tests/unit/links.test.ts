@@ -16,7 +16,7 @@ describe('getNavItems', () => {
   it('usa rutas sin prefijo en español', () => {
     expect(getNavItems('es').map((i) => i.href)).toEqual([
       '/',
-      '/#sobre-mi',
+      '/sobre-mi/',
       '/proyectos/',
       '/experiencia/',
       '/blog/',
@@ -26,7 +26,7 @@ describe('getNavItems', () => {
   });
   it('añade el prefijo de idioma en pt y en', () => {
     expect(getNavItems('pt')[0]!.href).toBe('/pt/');
-    expect(getNavItems('en')[1]!.href).toBe('/en/#sobre-mi');
+    expect(getNavItems('en')[1]!.href).toBe('/en/sobre-mi/');
     expect(getNavItems('en')[6]!.href).toBe('/en/contacto/');
   });
 });

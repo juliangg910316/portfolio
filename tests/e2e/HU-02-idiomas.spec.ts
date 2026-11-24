@@ -18,7 +18,8 @@ const paginas: Array<{ path: string; lang: Lang; base: string }> = [
 ];
 
 /** Nombres propios del contenido que coinciden con textos de la interfaz de otro idioma. */
-const nombresPropios = ['Flutter Experience'];
+// Los nombres de los idiomas en su propia lengua (selector de idioma) también son nombres propios.
+const nombresPropios = ['Flutter Experience', 'React Native', 'Español', 'Português', 'English'];
 
 const enIdioma = (base: string, lang: Lang) => (lang === 'es' ? base : `/${lang}${base}`);
 

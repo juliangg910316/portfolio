@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from './Photo.astro';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getContactPath } from '../i18n/links';
+import type { UiKey } from '../i18n/ui';
+
+// Sobre mí (HU-10): historia, foto, qué valoro, idiomas y un toque personal (Rueda Viva).
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const story = [1, 2, 3, 4].map((n) => ({ title: `aboutPage.story${n}.title` as UiKey, text: `aboutPage.story${n}.text` as UiKey }));
+const values = [1, 2, 3].map((n) => ({ title: `aboutPage.value${n}.title` as UiKey, text: `aboutPage.value${n}.text` as UiKey }));
+const languages = (['es', 'pt', 'en'] as const).map((l) => ({
+  name: `aboutPage.lang.${l}` as UiKey,
+  level: `aboutPage.lang.${l}.level` as UiKey,
+}));
+const h2 = 'font-display text-[30px] leading-[1.1] font-bold text-ink sm:text-[40px]';
+---
+
+<Layout title={t('aboutPage.meta.title')} description={t('aboutPage.lead')}>
+  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+    <div class="flex flex-wrap items-center gap-12">
+      <div class="min-w-0 flex-[1_1_420px]">
+        <h1 class="font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">{t('about.title')}</h1>
+        <p class="mt-4 font-display text-2xl leading-tight font-bold text-ink sm:text-3xl">
+          {t('about.tagline.1')} <span class="text-sky">{t('about.tagline.2')}</span>
+        </p>
+        <p class="mt-5 max-w-[560px] text-[17px] leading-relaxed text-ink-soft">{t('aboutPage.lead')}</p>
+      </div>
+      <div class="flex min-w-0 flex-[1_1_300px] justify-center">
+        <Photo size={300} loading="eager" />
+      </div>
+    </div>
+
+    <section aria-labelledby="historia-titulo" class="mt-20 max-w-[860px]">
+      <h2 id="historia-titulo" class={h2}>{t('aboutPage.story')}</h2>
+      <ol class="mt-8 border-l-2 border-border">
+        {
+          story.map((step, i) => (
+            <li class="relative pb-10 pl-8 last:pb-0">
+              <span
+                aria-hidden="true"
+                class="absolute top-0 -left-[17px] flex size-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-white"
+              >
+                {i + 1}
+              </span>
+              <h3 class="font-display text-xl leading-tight font-bold text-ink sm:text-2xl">{t(step.title)}</h3>
+              <p class="mt-2 text-[16px] leading-relaxed text-ink-soft">{t(step.text)}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section aria-labelledby="valoro-titulo" class="mt-20">
+      <h2 id="valoro-titulo" class={h2}>{t('aboutPage.values')}</h2>
+      <ul class="mt-8 grid gap-4 md:grid-cols-3">
+        {
+          values.map((v) => (
+            <li class="rounded-[20px] border border-border bg-surface p-6">
+              <h3 class="font-display text-xl font-bold text-ink">{t(v.title)}</h3>
+              <p class="mt-2 text-[15px] leading-relaxed text-ink-soft">{t(v.text)}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="mt-20 grid gap-6 md:grid-cols-2">
+      <section aria-labelledby="idiomas-titulo" class="rounded-[24px] border border-border bg-surface p-6 sm:p-8">
+        <h2 id="idiomas-titulo" class="font-display text-2xl font-bold text-ink">{t('aboutPage.languages')}</h2>
+        <ul class="mt-5 divide-y divide-border">
+          {
+            languages.map((l) => (
+              <li class="flex items-baseline justify-between gap-4 py-3">
+                <span class="font-semibold text-ink">{t(l.name)}</span>
+                <span class="text-right text-sm text-ink-muted">{t(l.level)}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="personal-titulo" class="rounded-[24px] border border-border bg-surface p-6 sm:p-8">
+        <h2 id="personal-titulo" class="font-display text-2xl font-bold text-ink">{t('aboutPage.personal.title')}</h2>
+        <p class="mt-5 text-[16px] leading-relaxed text-ink-soft">
+          {t('aboutPage.personal.before')}{' '}
+          <a href={localizePath('/proyectos/rueda-viva/', lang)} class="font-semibold text-link underline hover:text-ink">
+            Rueda Viva
+          </a>{t('aboutPage.personal.after')}
+        </p>
+      </section>
+    </div>
+
+    <section
+      aria-labelledby="cta-titulo"
+      class="mt-20 flex flex-wrap items-center justify-between gap-6 rounded-[28px] border border-border bg-surface p-8 sm:p-10"
+    >
+      <h2 id="cta-titulo" class="font-display text-[26px] leading-tight font-bold text-ink sm:text-[32px]">
+        {t('aboutPage.cta.title')}
+      </h2>
+      <a
+        href={getContactPath(lang)}
+        class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-7 text-[15px] font-semibold text-white hover:bg-primary-deep"
+      >
+        {t('about.cta')}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+          ><path d="M5 12h14M13 6l6 6-6 6"></path></svg
+        >
+      </a>
+    </section>
+  </main>
+</Layout>

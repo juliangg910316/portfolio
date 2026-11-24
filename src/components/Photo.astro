@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+// Foto profesional (HU-10): src/assets/julian.(jpg|jpeg|png|webp). Si no existe, se ve el hueco [PENDIENTE].
+interface Props {
+  /** Ancho en píxeles CSS (la foto es cuadrada y circular). */
+  size: number;
+  /** `eager` si está arriba de la página (LCP). */
+  loading?: 'eager' | 'lazy';
+}
+const { size, loading = 'lazy' } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/julian.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
+---
+
+{
+  photo ? (
+    <Image
+      src={photo}
+      alt={t('about.photo.alt')}
+      width={size}
+      height={size}
+      widths={[size, size * 2]}
+      sizes={`${size}px`}
+      fit="cover"
+      position="center"
+      format="webp"
+      loading={loading}
+      fetchpriority={loading === 'eager' ? 'high' : undefined}
+      class="aspect-square max-w-full rounded-full border-[6px] border-primary object-cover"
+      style={`width:${size}px`}
+    />
+  ) : (
+    <div
+      style={`width:${size}px`}
+      class="flex aspect-square max-w-full flex-col items-center justify-center gap-2.5 rounded-full border-[6px] border-primary bg-surface p-6 text-center text-ink-muted"
+    >
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21a8 8 0 0 1 16 0" />
+      </svg>
+      <span class="text-sm">{t('about.photo')}</span>
+    </div>
+  )
+}

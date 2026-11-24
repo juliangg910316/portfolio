@@ -1,7 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 import { getContactPath } from '../i18n/links';
 import type { UiKey } from '../i18n/ui';
+import Photo from './Photo.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,22 +19,7 @@ const stats: ReadonlyArray<{ value: string; label: UiKey }> = [
 <section id="sobre-mi" aria-labelledby="sobre-mi-titulo" class="mx-auto max-w-[1200px] scroll-mt-6 px-4 pb-26 sm:px-6">
   <div class="flex flex-wrap items-center gap-14">
     <div class="flex min-w-0 flex-[1_1_420px] justify-center">
-      <!-- [PENDIENTE: foto profesional] → sustituir por <Image> de astro:assets -->
-      <div
-        class="flex aspect-square w-[340px] max-w-full flex-col items-center justify-center gap-2.5 rounded-full border-[6px] border-primary bg-surface p-6 text-center text-ink-muted"
-      >
-        <svg
-          width="56"
-          height="56"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg
-        >
-        <span class="text-sm">{t('about.photo')}</span>
-      </div>
+      <Photo size={340} />
     </div>
 
     <div class="min-w-0 flex-[1_1_420px]">
@@ -59,9 +45,10 @@ const stats: ReadonlyArray<{ value: string; label: UiKey }> = [
         }
       </dl>
 
+      <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
       <a
         href={getContactPath(lang)}
-        class="mt-7 inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-[15px] font-semibold text-white no-underline hover:bg-primary-deep"
+        class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-[15px] font-semibold text-white no-underline hover:bg-primary-deep"
       >
         {t('about.cta')}
         <svg
@@ -76,6 +63,10 @@ const stats: ReadonlyArray<{ value: string; label: UiKey }> = [
           aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg
         >
       </a>
+      <a href={localizePath('/sobre-mi/', lang)} class="inline-flex min-h-11 items-center font-semibold text-link underline hover:text-ink">
+        {t('about.readStory')}
+      </a>
+      </div>
     </div>
   </div>
 </section>
