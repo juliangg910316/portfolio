@@ -2,12 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { getContactPath, getCvPath, getNavItems } from '../../src/i18n/links';
 
 describe('getNavItems', () => {
-  it('devuelve los 7 enlaces del menú en orden', () => {
+  it('devuelve los 8 enlaces del menú en orden', () => {
     expect(getNavItems('es').map((i) => i.key)).toEqual([
       'nav.home',
       'nav.about',
       'nav.projects',
       'nav.experience',
+      'nav.howIWork',
       'nav.blog',
       'nav.services',
       'nav.contact',
@@ -19,6 +20,7 @@ describe('getNavItems', () => {
       '/sobre-mi/',
       '/proyectos/',
       '/experiencia/',
+      '/como-trabajo/',
       '/blog/',
       '/servicios/',
       '/contacto/',
@@ -27,7 +29,7 @@ describe('getNavItems', () => {
   it('añade el prefijo de idioma en pt y en', () => {
     expect(getNavItems('pt')[0]!.href).toBe('/pt/');
     expect(getNavItems('en')[1]!.href).toBe('/en/sobre-mi/');
-    expect(getNavItems('en')[6]!.href).toBe('/en/contacto/');
+    expect(getNavItems('en')[7]!.href).toBe('/en/contacto/');
   });
 });
 

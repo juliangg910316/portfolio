@@ -30,8 +30,8 @@ const langs = Object.keys(languages) as Lang[];
       <span class="font-display text-lg font-bold max-[399px]:sr-only">Julian<span class="text-sky">.dev</span></span>
     </a>
 
-    <nav aria-label={t('nav.label')} class="order-last w-full lg:order-none lg:w-auto">
-      <ul class="flex flex-wrap gap-x-5 lg:gap-x-6">
+    <nav aria-label={t('nav.label')} class="order-last w-full xl:order-none xl:w-auto">
+      <ul class="flex flex-wrap gap-x-5 xl:gap-x-6">
         {
           navItems.map((item) => {
             const isCurrent = normalize(item.href) === current;

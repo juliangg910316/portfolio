@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getContactPath } from '../i18n/links';
+import type { UiKey } from '../i18n/ui';
+
+// Cómo trabajo con IA (HU-09): flujo por pasos, ejemplo real (Rueda Viva) y herramientas.
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const steps = [1, 2, 3, 4, 5, 6].map((n) => ({ title: `howPage.step${n}.title` as UiKey, text: `howPage.step${n}.text` as UiKey }));
+const specs = [1, 2, 3, 4, 5, 6].map((n) => `howPage.example.spec${n}` as UiKey);
+// Cifras reales del repositorio de Rueda Viva (specs/ y git log).
+const stats: ReadonlyArray<{ value: number; label: UiKey }> = [
+  { value: 6, label: 'howPage.example.specs' },
+  { value: 43, label: 'howPage.example.tasks' },
+  { value: 25, label: 'howPage.example.commits' },
+];
+const tools: ReadonlyArray<{ name: string; text: UiKey }> = [
+  { name: 'Claude Code', text: 'howPage.tool.claude' },
+  { name: 'Cursor', text: 'howPage.tool.cursor' },
+  { name: 'GitHub Copilot', text: 'howPage.tool.copilot' },
+  { name: 'MCP', text: 'howPage.tool.mcp' },
+];
+const repo = 'https://github.com/juliangg910316/SpinStreak';
+const caseHref = localizePath('/proyectos/rueda-viva/', lang);
+const h2 = 'font-display text-[30px] leading-[1.1] font-bold text-ink sm:text-[40px]';
+const link = 'font-semibold text-link underline hover:text-ink';
+---
+
+<Layout title={t('howPage.meta.title')} description={t('howPage.lead')}>
+  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-16 pb-24 sm:px-6 lg:pt-22">
+    <h1 class="font-display text-[46px] leading-[1.02] font-bold text-ink sm:text-[64px]">{t('howPage.title')}</h1>
+    <p class="mt-5 max-w-[680px] text-[17px] leading-relaxed text-ink-soft">{t('howPage.lead')}</p>
+
+    <section aria-labelledby="base-titulo" class="mt-12 max-w-[860px] rounded-[24px] border border-border bg-surface p-6 sm:p-8">
+      <h2 id="base-titulo" class="font-display text-2xl font-bold text-ink">{t('howPage.base.title')}</h2>
+      <p class="mt-3 text-[16px] leading-relaxed text-ink-soft">{t('howPage.base.text')}</p>
+    </section>
+
+    <section aria-labelledby="flujo-titulo" class="mt-20 max-w-[860px]">
+      <h2 id="flujo-titulo" class={h2}>{t('howPage.flow')}</h2>
+      <ol class="mt-8 border-l-2 border-border">
+        {
+          steps.map((step, i) => (
+            <li class="relative pb-10 pl-8 last:pb-0">
+              <span
+                aria-hidden="true"
+                class="absolute top-0 -left-[17px] flex size-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-white"
+              >
+                {i + 1}
+              </span>
+              <h3 class="font-display text-xl leading-tight font-bold text-ink sm:text-2xl">{t(step.title)}</h3>
+              <p class="mt-2 text-[16px] leading-relaxed text-ink-soft">{t(step.text)}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section aria-labelledby="ejemplo-titulo" class="mt-20 rounded-[28px] border border-border bg-surface p-6 sm:p-10">
+      <h2 id="ejemplo-titulo" class={h2}>{t('howPage.example.title')}</h2>
+      <p class="mt-4 max-w-[720px] text-[17px] leading-relaxed text-ink-soft">
+        <a href={caseHref} class={link}>Rueda Viva</a>{t('howPage.example.after')}
+      </p>
+      <dl class="mt-8 grid grid-cols-3 gap-3 sm:max-w-[560px] sm:gap-4">
+        {
+          stats.map((s) => (
+            <div class="flex flex-col-reverse rounded-[18px] border border-border p-4 text-center sm:p-5">
+              <dt class="text-sm text-ink-muted">{t(s.label)}</dt>
+              <dd class="font-display text-[36px] leading-none font-bold text-sky sm:text-[44px]">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <h3 class="mt-10 font-display text-xl font-bold text-ink">{t('howPage.example.list')}</h3>
+      <ol class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          specs.map((spec, i) => (
+            <li class="flex items-center gap-3 rounded-[14px] border border-border px-4 py-3 text-[15px] text-ink">
+              <span class="font-mono text-sm text-ink-muted">{String(i + 1).padStart(3, '0')}</span>
+              {t(spec)}
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">{t('howPage.example.note')}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={repo}
+          class="inline-flex h-12 items-center gap-2.5 rounded-full border border-border px-6 text-[15px] font-semibold text-ink hover:border-primary"
+        >
+          {t('howPage.example.repo')}
+        </a>
+        <a href={caseHref} class="inline-flex h-12 items-center text-[15px] font-semibold text-link underline hover:text-ink">
+          {t('howPage.example.case')}
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="herramientas-titulo" class="mt-20">
+      <h2 id="herramientas-titulo" class={h2}>{t('howPage.tools.title')}</h2>
+      <ul class="mt-8 grid gap-4 md:grid-cols-2">
+        {
+          tools.map((tool) => (
+            <li class="rounded-[20px] border border-border bg-surface p-6">
+              <h3 class="font-display text-xl font-bold text-ink">{tool.name}</h3>
+              <p class="mt-2 text-[15px] leading-relaxed text-ink-soft">{t(tool.text)}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-8 text-[16px] leading-relaxed text-ink-soft">
+        {t('howPage.more.before')}{' '}
+        <a href={localizePath('/blog/spec-driven-development/', lang)} class={link}>{t('howPage.more.link')}</a>.
+      </p>
+    </section>
+
+    <section
+      aria-labelledby="cta-titulo"
+      class="mt-20 flex flex-wrap items-center justify-between gap-6 rounded-[28px] border border-border bg-surface p-8 sm:p-10"
+    >
+      <h2 id="cta-titulo" class="font-display text-[26px] leading-tight font-bold text-ink sm:text-[32px]">
+        {t('howPage.cta.title')}
+      </h2>
+      <a
+        href={getContactPath(lang)}
+        class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-7 text-[15px] font-semibold text-white hover:bg-primary-deep"
+      >
+        {t('blog.cta.button')}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+          ><path d="M5 12h14M13 6l6 6-6 6"></path></svg
+        >
+      </a>
+    </section>
+  </main>
+</Layout>

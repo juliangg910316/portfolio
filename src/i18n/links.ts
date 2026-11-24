@@ -19,6 +19,7 @@ const navPaths: ReadonlyArray<{ key: UiKey; path: string }> = [
   { key: 'nav.about', path: '/sobre-mi/' },
   { key: 'nav.projects', path: '/proyectos/' },
   { key: 'nav.experience', path: '/experiencia/' },
+  { key: 'nav.howIWork', path: '/como-trabajo/' },
   { key: 'nav.blog', path: '/blog/' },
   { key: 'nav.services', path: '/servicios/' },
   { key: 'nav.contact', path: '/contacto/' },
