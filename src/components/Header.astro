@@ -3,6 +3,12 @@ import { languages, type Lang } from '../i18n/ui';
 import { alternatePath, getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 import { getNavItems } from '../i18n/links';
 
+interface Props {
+  /** Enlace de cada idioma en el selector; por defecto, la misma ruta con otro prefijo. */
+  langLinks?: Record<Lang, string>;
+}
+
+const { langLinks } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const normalize = (path: string) => path.replace(/\/$/, '') || '/';
@@ -55,7 +61,7 @@ const langs = Object.keys(languages) as Lang[];
           langs.map((l) => (
             <li>
               <a
-                href={alternatePath(Astro.url.pathname, l)}
+                href={langLinks?.[l] ?? alternatePath(Astro.url.pathname, l)}
                 hreflang={l}
                 lang={l}
                 aria-current={l === lang ? 'true' : undefined}

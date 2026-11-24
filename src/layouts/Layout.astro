@@ -9,14 +9,36 @@ interface Props {
   description?: string;
   /** Páginas que no deben indexarse (404): sin canonical ni hreflang. */
   noindex?: boolean;
+  /**
+   * Páginas con slug distinto en cada idioma (artículos del blog, HU-08): ruta de cada traducción que existe.
+   * Los idiomas que faltan no llevan hreflang y el selector de idioma lleva a `fallback`.
+   */
+  translations?: Partial<Record<Lang, string>>;
+  /** Ruta sin idioma a la que lleva el selector cuando falta una traducción (p. ej. `/blog/`). */
+  fallback?: string;
+  ogType?: 'website' | 'article';
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { title = t('site.title'), description = t('site.description'), noindex = false } = Astro.props;
+const {
+  title = t('site.title'),
+  description = t('site.description'),
+  noindex = false,
+  translations,
+  fallback = '/',
+  ogType = 'website',
+} = Astro.props;
 const langs = Object.keys(languages) as Lang[];
 const abs = (path: string) => new URL(path, Astro.site).href;
 const canonical = abs(Astro.url.pathname);
+// Ruta de esta página en cada idioma: la misma ruta con otro prefijo, salvo que se indiquen las traducciones.
+const hreflangs: Partial<Record<Lang, string>> = translations
+  ? translations
+  : Object.fromEntries(langs.map((l) => [l, localizePath(Astro.url.pathname, l)]));
+const langLinks = translations
+  ? (Object.fromEntries(langs.map((l) => [l, translations[l] ?? localizePath(fallback, l)])) as Record<Lang, string>)
+  : undefined;
 
 const ogLocale: Record<Lang, string> = { es: 'es_ES', pt: 'pt_BR', en: 'en_US' };
 // Generadas con `npm run og` (scripts/og.ts).
@@ -47,15 +69,13 @@ const ogImage = abs(`/og/${lang}.png`);
       ) : (
         <Fragment>
           <link rel="canonical" href={canonical} />
-          {langs.map((l) => (
-            <link rel="alternate" hreflang={l} href={abs(localizePath(Astro.url.pathname, l))} />
-          ))}
-          <link rel="alternate" hreflang="x-default" href={abs(localizePath(Astro.url.pathname, defaultLang))} />
+          {langs.map((l) => hreflangs[l] && <link rel="alternate" hreflang={l} href={abs(hreflangs[l])} />)}
+          {hreflangs[defaultLang] && <link rel="alternate" hreflang="x-default" href={abs(hreflangs[defaultLang])} />}
         </Fragment>
       )
     }
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Julian Gutierrez" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -73,6 +93,7 @@ const ogImage = abs(`/og/${lang}.png`);
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={t('blog.rss.title')} href={abs(localizePath('/blog/rss.xml', lang))} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -87,7 +108,7 @@ const ogImage = abs(`/og/${lang}.png`);
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-3 focus:text-white"
       >{t('a11y.skip')}</a
     >
-    <Header />
+    <Header langLinks={langLinks} />
     <slot />
   </body>
 </html>

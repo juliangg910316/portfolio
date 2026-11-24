@@ -1,0 +1,63 @@
+---
+import { render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getContactPath, social } from '../i18n/links';
+import { formatDate, isoDate } from '../lib/dates';
+import { postMinutes, postTranslations, type Post } from '../lib/blog-data';
+
+// Artículo del blog (HU-08). La tipografía es la de los casos de estudio (.prose-caso en global.css).
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { Content } = await render(post);
+const translations = await postTranslations(post);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: isoDate(post.data.date),
+  inLanguage: lang,
+  keywords: post.data.tags.join(', '),
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  author: { '@type': 'Person', name: 'Julian Gutierrez Garcia', url: new URL(localizePath('/', lang), Astro.site).href, sameAs: [social.linkedin, social.github] },
+};
+---
+
+<Layout title={`${post.data.title} · Julian Gutierrez`} description={post.data.description} translations={translations} fallback="/blog/" ogType="article">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <main id="contenido" class="mx-auto max-w-[1200px] px-4 pt-12 pb-24 sm:px-6 lg:pt-16">
+    <article class="mx-auto max-w-[720px]">
+      <a href={localizePath('/blog/', lang)} class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-link hover:text-ink">
+        <span aria-hidden="true">←</span>
+        {t('blog.back')}
+      </a>
+      <header class="mt-6">
+        <p class="flex flex-wrap gap-x-3 text-sm text-ink-muted">
+          <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, lang)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{t('blog.readingTime').replace('{n}', String(postMinutes(post)))}</span>
+        </p>
+        <h1 class="mt-3 font-display text-[34px] leading-[1.1] font-bold text-ink sm:text-[46px]">{post.data.title}</h1>
+        <p class="mt-4 text-[19px] leading-relaxed text-ink-soft">{post.data.description}</p>
+        <ul aria-label={t('blog.tags')} class="mt-5 flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => <li class="rounded-full border border-border px-3 py-1 text-xs text-ink-soft">{tag}</li>)}
+        </ul>
+      </header>
+      <div class="prose-caso mt-10 border-t border-border pt-10">
+        <Content />
+      </div>
+    </article>
+
+    <aside aria-labelledby="blog-cta" class="mx-auto mt-16 flex max-w-[720px] flex-wrap items-center justify-between gap-5 rounded-[24px] border border-border bg-surface p-6 sm:p-8">
+      <h2 id="blog-cta" class="font-display text-2xl leading-tight font-bold text-ink">{t('blog.cta.title')}</h2>
+      <a href={getContactPath(lang)} class="inline-flex h-12 items-center rounded-full bg-primary px-6 text-[15px] font-semibold text-white hover:bg-primary-deep">
+        {t('blog.cta.button')}
+      </a>
+    </aside>
+  </main>
+</Layout>

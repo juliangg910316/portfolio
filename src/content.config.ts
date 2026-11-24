@@ -98,4 +98,17 @@ const servicios = defineCollection({
   }),
 });
 
-export const collections = { proyectos, casos, experiencia, formacion, certificaciones, servicios };
+// Blog (HU-08): src/content/blog/<lang>/<slug>.md. El slug puede cambiar por idioma;
+// `translationKey` une las traducciones de un mismo artículo.
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string().min(1),
+    description: z.string().min(50).max(170),
+    date: z.coerce.date(),
+    tags: z.array(z.string().min(1)).min(1).max(5),
+    translationKey: z.string().min(1),
+  }),
+});
+
+export const collections = { proyectos, casos, experiencia, formacion, certificaciones, servicios, blog };

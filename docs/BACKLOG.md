@@ -15,7 +15,7 @@ Estado: ⬜ pendiente · 🟦 en curso · ✅ hecha. Orden de trabajo de arriba 
 | ✅ | [HU-06](historias/HU-06-servicios.md) | Servicios | Media |
 | ✅ | [HU-10](historias/HU-10-sobre-mi.md) | Sobre mí | Media |
 | ⬜ | [HU-09](historias/HU-09-como-trabajo.md) | Cómo trabajo con IA | Media |
-| ⬜ | [HU-08](historias/HU-08-blog.md) | Blog | Media |
+| ✅ | [HU-08](historias/HU-08-blog.md) | Blog | Media |
 | ⬜ | [HU-13](historias/HU-13-demo-flutter.md) | Demo de Flutter Web | Baja |
 
 Nueva historia: copiar [`historias/_plantilla.md`](historias/_plantilla.md).

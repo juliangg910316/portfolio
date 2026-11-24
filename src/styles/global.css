@@ -96,6 +96,9 @@ html {
 }
 .prose-caso p,
 .prose-caso ul,
+.prose-caso pre {
+  margin-top: 1rem;
+}
 /* Bloques de código (Shiki con un tema por modo, ver astro.config.mjs). */
 .prose-caso pre span {
   color: var(--shiki-dark);
@@ -107,9 +110,6 @@ html {
   :root:not([data-theme]) .prose-caso pre span {
     color: var(--shiki-light);
   }
-}
-.prose-caso pre {
-  margin-top: 1rem;
 }
 .prose-caso ul {
   padding-left: 1.25rem;
@@ -136,4 +136,57 @@ html {
   background: var(--color-surface) !important;
   padding: 1rem 1.25rem;
   white-space: pre-wrap;
+}
+
+/* Artículos del blog (HU-08): elementos que los casos de estudio no usaban. */
+.prose-caso h3 {
+  margin-top: 2rem;
+  scroll-margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+.prose-caso ol,
+.prose-caso blockquote,
+.prose-caso table {
+  margin-top: 1rem;
+}
+.prose-caso ol {
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+.prose-caso a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-caso a:hover {
+  color: var(--color-ink);
+}
+.prose-caso blockquote {
+  border-left: 4px solid var(--color-sky);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  color: var(--color-ink);
+}
+.prose-caso pre code {
+  color: inherit;
+  font-size: 0.85em;
+}
+.prose-caso table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.prose-caso th,
+.prose-caso td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose-caso th {
+  color: var(--color-ink);
+  background: var(--color-surface);
 }

@@ -19,6 +19,7 @@
     "cv": "CV_PRINT=1 astro build && node scripts/cv.ts && astro build"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.6",
     "@tailwindcss/vite": "^4.3.5",
     "astro": "^7.4.13",

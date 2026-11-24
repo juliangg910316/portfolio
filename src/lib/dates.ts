@@ -19,3 +19,14 @@ export function formatMonth(yearMonth: string, lang: Lang): string {
 export function formatPeriod(start: string, end: string | undefined, lang: Lang): string {
   return `${formatMonth(start, lang)} – ${end ? formatMonth(end, lang) : present[lang]}`;
 }
+
+/** Fecha completa: `23 nov. 2026` (es, pt), `Nov 23, 2026` (en). Se usa la fecha UTC (las del contenido no tienen hora). */
+export function formatDate(date: Date, lang: Lang): string {
+  const day = date.getUTCDate();
+  const month = months[lang][date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+  return lang === 'en' ? `${month} ${day}, ${year}` : `${day} ${month} ${year}`;
+}
+
+/** `2026-11-23` para el atributo datetime. */
+export const isoDate = (date: Date) => date.toISOString().slice(0, 10);
