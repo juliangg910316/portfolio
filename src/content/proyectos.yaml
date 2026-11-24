@@ -52,6 +52,8 @@ rueda-viva:
   stack: [Flutter, flutter_bloc, drift, freezed]
   links:
     - { type: repo, url: 'https://github.com/juliangg910316/SpinStreak' }
+  # Build de Flutter Web (rama feat/demo-web de SpinStreak) copiado en public/demos/rueda-viva/.
+  demo: /demos/rueda-viva/
 
 studio-shaddai:
   name: Studio Shaddai

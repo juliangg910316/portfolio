@@ -31,6 +31,8 @@ const proyectos = defineCollection({
         }),
       )
       .default([]),
+    /** Demo de Flutter Web servida desde public/ (HU-13), p. ej. /demos/rueda-viva/. */
+    demo: z.string().regex(/^\/demos\/[a-z0-9-]+\/$/).optional(),
   })
   .refine((p) => !(p.internal && p.links.some((l) => l.type === 'store')), {
     message: 'Las apps internas no pueden enlazar a tiendas',

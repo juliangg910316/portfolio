@@ -80,6 +80,35 @@ const badge = 'rounded-full border border-border bg-bg px-3 py-1 text-xs font-se
       }
     </header>
 
+    {
+      data.demo && (
+        <section
+          aria-labelledby="demo-titulo"
+          class="mt-10 max-w-[760px] rounded-[20px] border border-border bg-surface p-6 sm:p-8"
+          data-demo={data.demo}
+          data-demo-title={t('case.demo.frame').replace('{name}', name)}
+        >
+          <h2 id="demo-titulo" class="font-display text-2xl font-bold text-ink">{t('case.demo.title')}</h2>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink-soft">{t('case.demo.text')}</p>
+          <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+            {/* Sin JS o en el móvil es un enlace normal: abre la demo a pantalla completa (CA3). */}
+            <a
+              href={data.demo}
+              data-demo-try
+              class="inline-flex h-12 items-center gap-2.5 rounded-full bg-primary px-6 text-[15px] font-semibold text-white hover:bg-primary-deep"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              {t('case.demo.try')}
+            </a>
+            <a href={data.demo} class="inline-flex min-h-11 items-center text-[15px] font-semibold text-link underline hover:text-ink">
+              {t('case.demo.full')}
+            </a>
+          </div>
+          <div data-demo-slot class="hidden"></div>
+        </section>
+      )
+    }
+
     <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_220px]">
       <article class="prose-caso min-w-0 max-w-[760px]">
         <Content />
@@ -126,3 +155,24 @@ const badge = 'rounded-full border border-border bg-bg px-3 py-1 text-xs font-se
     </nav>
   </main>
 </Layout>
+
+<script>
+  // HU-13: en pantallas anchas, «Probar demo» incrusta la demo en lugar de navegar.
+  // El iframe se crea al pulsar, así la página no descarga la demo antes (CA1).
+  const section = document.querySelector<HTMLElement>('[data-demo]');
+  const trigger = section?.querySelector<HTMLAnchorElement>('[data-demo-try]');
+  const slot = section?.querySelector<HTMLElement>('[data-demo-slot]');
+  trigger?.addEventListener('click', (event) => {
+    if (!section || !slot || !window.matchMedia?.('(min-width: 768px)').matches) return;
+    event.preventDefault();
+    const iframe = document.createElement('iframe');
+    iframe.src = section.dataset.demo!;
+    iframe.title = section.dataset.demoTitle!;
+    iframe.className = 'mx-auto block h-[760px] w-full max-w-[400px] rounded-[28px] border-4 border-border bg-bg';
+    slot.replaceChildren(iframe);
+    slot.classList.remove('hidden');
+    slot.classList.add('mt-6');
+    trigger.remove();
+    iframe.focus();
+  });
+</script>
