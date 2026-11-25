@@ -69,9 +69,9 @@ treew:
     - es: Empecé desde cero SuperPay23, una app fintech con tarjetas Visa, KYC, doble factor y pagos con QR.
       pt: Comecei do zero o SuperPay23, um app fintech com cartões Visa, KYC, dois fatores e pagamentos por QR.
       en: I started SuperPay23 from scratch, a fintech app with Visa cards, KYC, two-factor authentication and QR payments.
-    - es: Desarrollé la app de logística Centro de Distribución, con lectura de códigos, OCR y modo sin conexión.
-      pt: Desenvolvi o app de logística Centro de Distribuição, com leitura de códigos, OCR e modo offline.
-      en: I built the Distribution Center logistics app, with barcode reading, OCR and offline mode.
+    - es: En la app de logística Centro de Distribución, desarrollé la lectura del QR de los productos del almacén y su despacho.
+      pt: No app de logística Centro de Distribuição, desenvolvi a leitura do QR dos produtos do armazém e a sua expedição.
+      en: In the Distribution Center logistics app, I built the scanning of warehouse product QR codes and their dispatch.
     - es: Trabajé en remoto con un equipo de producto canadiense en todo el ciclo, con Clean Architecture y Bloc.
       pt: Trabalhei em remoto com uma equipe de produto canadense em todo o ciclo, com Clean Architecture e Bloc.
       en: I worked remotely with a Canadian product team across the whole cycle, using Clean Architecture and Bloc.

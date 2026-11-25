@@ -7,7 +7,7 @@ Distribution Center is an **internal logistics app** at Treew (Canada): goods re
 
 ## My role
 
-Flutter developer of the app at Treew, between 2024 and 2025. [PENDING: which parts you built and which the team built]
+Flutter developer at Treew, between 2024 and 2025. I joined when the app already existed to add a complete feature: **scanning the QR codes of warehouse products**, showing them in a list in the app and **dispatching them**.
 
 ## Stack and architecture
 
@@ -21,7 +21,7 @@ Flutter developer of the app at Treew, between 2024 and 2025. [PENDING: which pa
 ## Technical decisions
 
 - **Offline mode.** Data is stored on the device (Hive and SQLite) so work in the warehouse can continue without a network.
-- [PENDING: other technical decisions, explained, e.g. why Scandit and Tesseract]
+- **A lesson about state.** The architecture decisions predate my arrival. The app mixes BLoC and GetX because, over its development, different developers each added their own state manager. That mix makes maintenance harder, which is why on my projects the state manager is fixed in the rules from day one.
 
 ## Challenges
 
@@ -29,4 +29,4 @@ Flutter developer of the app at Treew, between 2024 and 2025. [PENDING: which pa
 
 ## Outcome
 
-[PENDING: app status and outcome]
+The app was tested and rolled out to all of the company's warehouses.

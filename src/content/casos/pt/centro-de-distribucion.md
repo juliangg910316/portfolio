@@ -7,7 +7,7 @@ Centro de Distribuição é um **app interno de logística** da Treew (Canadá):
 
 ## Meu papel
 
-Desenvolvedor Flutter do app na Treew, entre 2024 e 2025. [PENDENTE: quais partes você fez e quais a equipe]
+Desenvolvedor Flutter na Treew, entre 2024 e 2025. Entrei quando o app já existia para acrescentar uma funcionalidade completa: **ler o QR dos produtos do armazém**, mostrá-los numa lista no app e **despachá-los**.
 
 ## Stack e arquitetura
 
@@ -21,7 +21,7 @@ Desenvolvedor Flutter do app na Treew, entre 2024 e 2025. [PENDENTE: quais parte
 ## Decisões técnicas
 
 - **Modo offline.** Os dados são guardados no dispositivo (Hive e SQLite) para continuar trabalhando no armazém mesmo sem rede.
-- [PENDENTE: outras decisões técnicas explicadas, p. ex. por que Scandit e Tesseract]
+- **Uma lição sobre o estado.** As decisões de arquitetura são anteriores à minha chegada. O app mistura BLoC e GetX porque, ao longo do desenvolvimento, diferentes desenvolvedores foram acrescentando cada um o seu gerenciador de estado. Essa mistura complica a manutenção, e por isso nos meus projetos o gerenciador de estado fica definido nas regras desde o primeiro dia.
 
 ## Desafios
 
@@ -29,4 +29,4 @@ Desenvolvedor Flutter do app na Treew, entre 2024 e 2025. [PENDENTE: quais parte
 
 ## Resultado
 
-[PENDENTE: status do app e resultado]
+O app foi testado e distribuído para todos os armazéns da empresa.
