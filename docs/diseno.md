@@ -29,7 +29,7 @@ Elegida el 2026-11-20. Lienzo con las 3 propuestas: https://claude.ai/artifact/M
 - Escala: h1 64 px (46 px en móvil), h2 40 px (30 px en móvil), cuerpo 17 px, etiquetas 13 px con `letter-spacing: 0.12em`.
 
 ## Estructura del inicio
-1. **Menú** en cápsula (`surface`, radio 20 px): logo "JG" + "Julian.dev", enlaces, selector ES/PT/EN y botón de tema.
+1. **Menú** en cápsula (`surface`, radio 20 px): logo "JG" + "JulianGG", enlaces, selector ES/PT/EN y botón de tema.
 2. **Presentación**: iconos de LinkedIn, GitHub y WhatsApp → "Hola, soy" → **Julian Gutierrez** (apellido en `sky`) → "Mobile Tech Lead · Flutter & IA" → descripción → botones *Descargar CV* (relleno) y *Contrátame* (borde). A la derecha, un móvil con una pantalla de Rueda Viva y etiquetas flotantes.
 3. **Sobre mí**: foto circular con borde `primary` + texto + 4 cifras (10+ años, ~10 apps, 4 devs, 5 países) + botón *Hablemos*.
 4. **Formación**: lista de certificados con insignia "Certificado" + tarjeta de educación (máster en criptografía).

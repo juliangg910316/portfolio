@@ -38,7 +38,7 @@ body{width:1200px;height:630px;background:${c.bg};color:${c.ink};font-family:Int
 .wrap{position:relative;height:100%;padding:72px 80px;display:flex;flex-direction:column}
 .logo{display:flex;align-items:center;gap:16px;font-family:'Space Grotesk';font-weight:700;font-size:30px}
 .jg{width:64px;height:64px;border-radius:18px;background:${c.primary};color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px}
-.dev{color:${c.sky}}
+.gg{color:${c.sky}}
 h1{margin-top:auto;font-family:'Space Grotesk';font-weight:700;font-size:96px;line-height:1}
 h1 span{color:${c.sky}}
 .role{margin-top:20px;font-family:'Space Grotesk';font-weight:500;font-size:40px;color:${c.link}}
@@ -48,7 +48,7 @@ h1 span{color:${c.sky}}
 </style></head><body>
 <div class="glow"></div>
 <div class="wrap">
-  <div class="logo"><span class="jg">JG</span><span>Julian<span class="dev">.dev</span></span></div>
+  <div class="logo"><span class="jg">JG</span><span>Julian<span class="gg">GG</span></span></div>
   <p class="url">${escape(host)}</p>
   <h1>Julian <span>Gutierrez</span></h1>
   <p class="role">${escape(t['hero.role'])}</p>
