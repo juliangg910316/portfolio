@@ -22,8 +22,9 @@ I was a **founding member** of the project and its **lead mobile developer for a
 ## Technical decisions
 
 - **Encrypted local storage.** In a payments app, data stored on the phone must be encrypted too. I integrated SQLCipher, backed by my background in cryptography.
-- **Real-time messaging with MQTT and XMPP.** [PENDING: why these protocols were chosen]
-- [PENDING: another technical decision, explained]
+- **Real-time messaging with MQTT and XMPP.** MQTT, because it's lightweight, for transaction notifications: it copes well with unstable connections and slow networks. XMPP (with Smack) for chat.
+- **Native Java.** When development started, Kotlin wasn't yet the language Google recommended for Android.
+- **OpenStreetMap for maps.** Some services, such as Google's maps, are blocked in Cuba, so an open alternative was needed.
 
 ## Challenges
 

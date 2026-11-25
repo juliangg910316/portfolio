@@ -22,8 +22,9 @@ Fui **miembro fundador** del proyecto y su **desarrollador móvil principal dura
 ## Decisiones técnicas
 
 - **Almacenamiento local cifrado.** En una app de pagos, los datos guardados en el móvil también tienen que ir cifrados. Integré SQLCipher con el apoyo de mi formación en criptografía.
-- **Mensajería en tiempo real con MQTT y XMPP.** [PENDIENTE: por qué se eligieron estos protocolos]
-- [PENDIENTE: otra decisión técnica explicada]
+- **Mensajería en tiempo real con MQTT y XMPP.** MQTT, por ser ligero, para los avisos de transacciones: aguanta bien las conexiones inestables y las redes lentas. XMPP (con Smack) para el chat.
+- **Java nativo.** Cuando empezó el desarrollo, Kotlin todavía no era el lenguaje que Google proponía para Android.
+- **OpenStreetMap para los mapas.** Algunos servicios, como los mapas de Google, están bloqueados en Cuba, así que hacía falta una alternativa abierta.
 
 ## Retos
 
