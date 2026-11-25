@@ -37,8 +37,7 @@ UI → Cubit → repositório (interface no domínio) → implementação em dad
 
 - **Um registro de ponto confiável**: permissões, câmera, localização e envio da foto para um endpoint próprio, tudo no mesmo fluxo.
 - **Rastreamento com o app em segundo plano**, com seu serviço e suas notificações.
-- [PENDENTE: um desafio concreto do projeto e como você o resolveu]
 
 ## Resultado
 
-O app está na fase final: testes no Android pelo teste interno do Google Play e publicação na App Store e no Google Play com as contas do cliente. [PENDENTE: status da publicação] O código é privado.
+O app está na fase final de testes, com o Android no teste interno do Google Play. Depois será publicado na App Store e no Google Play com as contas do cliente. O código é privado.

@@ -37,8 +37,7 @@ UI → Cubit → repositorio (interfaz en el dominio) → implementación en dat
 
 - **Un fichaje fiable**: permisos, cámara, ubicación y subida de la foto a un endpoint propio, todo dentro del mismo flujo.
 - **Rastreo con la app en segundo plano**, con su servicio y sus notificaciones.
-- [PENDIENTE: un reto concreto del proyecto y cómo lo resolviste]
 
 ## Resultado
 
-La app está en la fase final: pruebas en Android por la prueba interna de Google Play y publicación en App Store y Google Play con las cuentas del cliente. [PENDIENTE: estado de la publicación] El código es privado.
+La app está en la fase final de pruebas, con Android en la prueba interna de Google Play. Después se publicará en App Store y Google Play con las cuentas del cliente. El código es privado.

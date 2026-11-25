@@ -37,8 +37,7 @@ UI → Cubit → repository (interface in the domain) → implementation in data
 
 - **Reliable check-ins**: permissions, camera, location and uploading the photo to a dedicated endpoint, all in the same flow.
 - **Tracking while the app is in the background**, with its own service and notifications.
-- [PENDING: a specific challenge in the project and how you solved it]
 
 ## Outcome
 
-The app is in its final phase: Android testing through Google Play internal testing and release on the App Store and Google Play with the client's accounts. [PENDING: release status] The code is private.
+The app is in its final testing phase, with Android in Google Play internal testing. It will then be released on the App Store and Google Play with the client's accounts. The code is private.
