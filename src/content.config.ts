@@ -80,6 +80,9 @@ const certificaciones = defineCollection({
     name: z.union([z.string().min(1), texto]),
     platform: z.string().min(1),
     date: mes,
+    files: z
+      .array(z.object({ file: z.string().regex(/^[a-z0-9-]+\.jpg$/), title: z.string().min(1).optional() }))
+      .optional(),
   }),
 });
 

@@ -3,7 +3,7 @@
 ## Estado (2026-11-23)
 - Repo creado: Astro 7 + TypeScript estricto + Tailwind v4, i18n ES/PT/EN, Vitest y Playwright (+ axe).
 - Tokens de la propuesta A en `src/styles/global.css`.
-- Backlog de 13 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio), ✅ HU-05 (trayectoria y CV), ✅ HU-07 (contacto), ✅ HU-11 (tema), ✅ HU-06 (servicios), ✅ HU-10 (sobre mí), ✅ HU-08 (blog), ✅ HU-09 (cómo trabajo), ✅ HU-13 (demo Flutter Web). **Backlog completo.**
+- Backlog de 14 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio), ✅ HU-05 (trayectoria y CV), ✅ HU-07 (contacto), ✅ HU-11 (tema), ✅ HU-06 (servicios), ✅ HU-10 (sobre mí), ✅ HU-08 (blog), ✅ HU-09 (cómo trabajo), ✅ HU-13 (demo Flutter Web), ✅ HU-14 (ver certificados). **Backlog completo.**
 - Casos de estudio con huecos `[PENDIENTE: …]` (ES/PT/EN): `grep -rn PENDIENTE src/content/casos/es` para ver la lista. Al rellenarlos, cambiar los 3 idiomas.
 - Foto de Julian en `src/assets/julian.jpg` (componente `Photo.astro`).
 - Marcadores `[PENDIENTE]` en la web: WhatsApp (`social.whatsapp` en `src/i18n/links.ts`, hoy `https://wa.me/PENDIENTE`).
@@ -16,6 +16,7 @@
 - Pendiente: comprar el dominio y cambiar `site` en `astro.config.mjs` → después **`npm run og`** (la URL sale en la imagen). `robots.txt`, sitemap, canonical y OG toman `site` solos.
 
 ## Decisiones
+- 2026-11-25 (HU-14): certificados en ventana (`<dialog>`) desde el inicio; imágenes = 1.ª página de los PDF del vault en `src/assets/certificados/` (los PDF no se publican). Pendiente: certificado de Domina Kotlin. Marca del menú: JulianGG (antes Julian.dev).
 - 2026-11-24 (HU-13): demo web de Rueda Viva en `public/demos/rueda-viva/` (build de la rama `feat/demo-web` de SpinStreak, sin `canvaskit/`: el motor sale de la CDN de Flutter). Cómo regenerarla: `docs/historias/HU-13-demo-flutter.md`. La rama de SpinStreak no tiene push.
 - 2026-11-24 (HU-09): `/como-trabajo/` en el menú (8 entradas → menú en su propia línea por debajo de `xl`); Rueda Viva 6 specs / 43 tareas / 25 commits. Pendiente: que Julian revise las descripciones de Cursor y Copilot.
 - 2026-11-23 (HU-08): 4 artículos (ES + traducciones PT/EN) con slug por idioma enlazado por `translationKey`; RSS por idioma; Shiki `github-*-default` por contraste AA de los comentarios. Pendiente: que Julian revise los textos.

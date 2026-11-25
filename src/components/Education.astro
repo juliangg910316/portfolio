@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import { Image, getImage } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { formatMonth } from '../lib/dates';
 import { localize } from '../lib/projects';
@@ -9,6 +11,24 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const certs = (await getCollection('certificaciones')).sort((a, b) => a.data.order - b.data.order);
 const [master, ...rest] = (await getCollection('formacion')).sort((a, b) => a.data.order - b.data.order);
+
+// HU-14: imágenes de los certificados. Cada una se abre en una ventana (<dialog>) al pulsar el curso.
+const assets = import.meta.glob<ImageMetadata>('../assets/certificados/*.jpg', { eager: true, import: 'default' });
+const asset = (file: string) => {
+  const img = assets[`../assets/certificados/${file}`];
+  if (!img) throw new Error(`Falta la imagen del certificado src/assets/certificados/${file}`);
+  return img;
+};
+const items = await Promise.all(
+  certs.map(async (c) => {
+    const name = localize(c.data.name, lang);
+    const images = (c.data.files ?? []).map((f) => ({ src: asset(f.file), title: f.title }));
+    // Sin JavaScript, el curso enlaza a la imagen del (primer) certificado.
+    const href = images[0] ? (await getImage({ src: images[0].src, width: 1600, format: 'webp' })).src : undefined;
+    return { id: c.id, name, data: c.data, images, href };
+  }),
+);
+const card = 'flex items-center gap-4 rounded-2xl border border-border bg-surface px-4 py-4 sm:px-5';
 ---
 
 <section aria-labelledby="formacion-inicio-titulo" class="mx-auto max-w-[1200px] px-4 pb-26 sm:px-6">
@@ -20,26 +40,59 @@ const [master, ...rest] = (await getCollection('formacion')).sort((a, b) => a.da
       </h2>
       <ul aria-label={t('edu.certs')} class="mt-6 flex flex-col gap-3">
         {
-          certs.map((c) => (
-            <li class="flex items-center gap-4 rounded-2xl border border-border bg-surface px-4 py-4 sm:px-5">
-              <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-xl bg-primary-deep/40 text-link">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="9" r="6" />
-                  <path d="m9 14-2 7 5-3 5 3-2-7" />
-                </svg>
-              </span>
-              <div class="min-w-0 flex-1">
-                <p class="font-semibold text-ink">{localize(c.data.name, lang)}</p>
-                <p class="mt-0.5 text-sm text-ink-muted">
-                  {c.data.platform} · <time datetime={c.data.date}>{formatMonth(c.data.date, lang)}</time>
-                </p>
-              </div>
-              <span class="hidden flex-none rounded-full border border-success/60 px-3 py-1 text-xs font-semibold text-success sm:inline">
-                {t('edu.badge')}
-              </span>
-              <span class="sr-only sm:hidden">{t('edu.badge')}</span>
-            </li>
-          ))
+          items.map((c) => {
+            const body = (
+              <Fragment>
+                <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-xl bg-primary-deep/40 text-link">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="9" r="6" />
+                    <path d="m9 14-2 7 5-3 5 3-2-7" />
+                  </svg>
+                </span>
+                <span class="block min-w-0 flex-1">
+                  <span class="block font-semibold text-ink">{c.name}</span>
+                  <span class="mt-0.5 block text-sm text-ink-muted">
+                    {c.data.platform} · <time datetime={c.data.date}>{formatMonth(c.data.date, lang)}</time>
+                  </span>
+                </span>
+                <span class="hidden flex-none rounded-full border border-success/60 px-3 py-1 text-xs font-semibold text-success sm:inline">
+                  {t('edu.badge')}
+                </span>
+                <span class="sr-only sm:hidden">{t('edu.badge')}</span>
+              </Fragment>
+            );
+            return (
+              <li>
+                {c.href ? (
+                  <a
+                    href={c.href}
+                    data-cert-open={`cert-${c.id}`}
+                    aria-haspopup="dialog"
+                    class:list={[card, 'group transition-colors hover:border-sky']}
+                  >
+                    <span class="sr-only">{t('edu.view')}: </span>
+                    {body}
+                    <svg
+                      class="flex-none text-ink-muted group-hover:text-ink"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
+                  </a>
+                ) : (
+                  <div class={card}>{body}</div>
+                )}
+              </li>
+            );
+          })
         }
       </ul>
     </div>
@@ -73,4 +126,72 @@ const [master, ...rest] = (await getCollection('formacion')).sort((a, b) => a.da
       }
     </div>
   </div>
+  {
+    items
+      .filter((c) => c.images.length > 0)
+      .map((c) => (
+        <dialog
+          id={`cert-${c.id}`}
+          aria-labelledby={`cert-${c.id}-titulo`}
+          class="m-auto max-h-[92dvh] w-[min(960px,calc(100%-32px))] max-w-none overflow-hidden rounded-[20px] border border-border bg-surface p-0 text-ink backdrop:bg-black/70"
+        >
+          <div class="flex max-h-[92dvh] flex-col">
+            <div class="flex items-start gap-4 border-b border-border px-5 py-4 sm:px-6">
+              <div class="min-w-0 flex-1">
+                <h3 id={`cert-${c.id}-titulo`} class="font-display text-lg leading-snug font-bold text-ink sm:text-xl">
+                  {c.name}
+                </h3>
+                <p class="mt-0.5 text-sm text-ink-muted">
+                  {c.data.platform} · <time datetime={c.data.date}>{formatMonth(c.data.date, lang)}</time>
+                </p>
+              </div>
+              <form method="dialog">
+                <button
+                  type="submit"
+                  aria-label={t('edu.close')}
+                  class="flex size-11 flex-none items-center justify-center rounded-full border border-border text-ink-soft hover:bg-bg hover:text-ink"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+            <div tabindex="0" class="flex flex-col gap-6 overflow-y-auto p-4 focus-visible:outline-2 focus-visible:outline-sky sm:p-6">
+              {c.images.map((img) => (
+                <figure>
+                  <Image
+                    src={img.src}
+                    alt={t('edu.alt').replace('{name}', img.title ?? c.name)}
+                    widths={[640, 960, 1600]}
+                    sizes="(min-width: 1000px) 912px, calc(100vw - 64px)"
+                    loading="lazy"
+                    class="h-auto w-full rounded-xl border border-border"
+                  />
+                  {img.title && <figcaption class="mt-2 text-sm font-semibold text-ink-soft">{img.title}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          </div>
+        </dialog>
+      ))
+  }
 </section>
+
+<script>
+  // HU-14: el curso abre su certificado en una ventana. Sin JS es un enlace normal a la imagen.
+  document.querySelectorAll<HTMLAnchorElement>('[data-cert-open]').forEach((link) => {
+    const dialog = document.getElementById(link.dataset.certOpen!) as HTMLDialogElement | null;
+    if (!dialog?.showModal) return;
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      dialog.showModal();
+    });
+    // Clic en el fondo (fuera del contenido) cierra la ventana.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => link.focus());
+  });
+</script>
+

@@ -1,11 +1,14 @@
 # Certificados de cursos (HU-05). Fuente: nota «Certificados de cursos» del vault y el CV.
 # Los nombres de los cursos van en su idioma original; `date` en AAAA-MM.
+# `files` (HU-14): imágenes en src/assets/certificados/ con su título si hay varias. Sin `files`, no es pulsable.
 
 flutter-experience:
   order: 1
   name: Flutter Experience
   platform: Academia do Flutter
   date: '2026-10'
+  files:
+    - file: flutter-experience.jpg
 
 academia-das-ias:
   order: 2
@@ -15,21 +18,35 @@ academia-das-ias:
     en: AI applied to software development (4 courses · 23 h)
   platform: Academia das IAs
   date: '2026-05'
+  files:
+    - file: ias-1-fundamentos.jpg
+      title: Fundamentos da IA para Desenvolvimento de Software
+    - file: ias-2-prompt-contexto.jpg
+      title: Engenharia de Prompt & Contexto
+    - file: ias-3-workflow.jpg
+      title: AI Dev Workflow & Automação
+    - file: ias-4-mcp.jpg
+      title: Model Context Protocol na prática
 
 big-school-agentes:
   order: 3
   name: Desarrollo con IA · Programa con Agentes
   platform: BIG school
   date: '2026-06'
+  files:
+    - file: big-school-agentes.jpg
 
 devtalles-prompts:
   order: 4
   name: Ingeniería de Prompts
   platform: DevTalles
   date: '2026-05'
+  files:
+    - file: devtalles-prompts.jpg
 
 domina-kotlin:
   order: 5
   name: Domina Kotlin
   platform: LinkedIn Learning
   date: '2025-07'
+  # PENDIENTE: certificado de Domina Kotlin (HU-14).
