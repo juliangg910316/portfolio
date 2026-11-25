@@ -21,7 +21,10 @@ SuperPay23 é um **app financeiro interno** da Treew (Canadá) para pessoas e em
 
 ## Decisões técnicas
 
-[PENDENTE: 2 ou 3 decisões técnicas explicadas, p. ex. por que Bloc e GoRouter ou como os dados sensíveis são criptografados]
+- **Bloc e Cubit, cada um onde se encaixa.** Os dois oferecem um estado único e imutável, rastreabilidade das mudanças e widgets próprios para reagir a elas. Os Cubits exigem menos código, então eram a opção padrão. Nas telas de pagamento e nas que disparam ações que devem ser executadas uma única vez, usava-se Bloc, que permite controlar cada evento que entra.
+- **Dados sensíveis com `flutter_secure_storage`**, que os guarda criptografados no Keychain do iOS e no Keystore do Android, nunca em texto puro.
+- **Autenticação em dois fatores com app autenticador** (códigos de uso único gerados no celular do usuário).
+- **Clean Architecture** em todo o app, para separar as regras de negócio do Flutter e das APIs bancárias.
 
 ## Desafios
 
@@ -29,4 +32,4 @@ SuperPay23 é um **app financeiro interno** da Treew (Canadá) para pessoas e em
 
 ## Resultado
 
-[PENDENTE: status do app e resultado]
+O app ficou funcionando em uso interno: com ele são pagos os salários dos funcionários e as compras no Supermarket23, a loja virtual da empresa.
