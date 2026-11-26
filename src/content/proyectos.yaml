@@ -1,4 +1,5 @@
 # Proyectos del portafolio (HU-03). La clave es el slug del caso de estudio: /proyectos/<slug>/.
+# `logo` (HU-15): archivo en src/assets/logos/. Bowling App y SCA van sin logo a propósito (confidencialidad).
 # Fuentes: CV, notas del vault (Rueda Viva, SCA, DShaddai, MeuBolso) y el portafolio de Google Sites.
 # Reglas: nunca "Lanetalk" (es "Bowling App"); las apps internas no llevan enlaces a tiendas.
 
@@ -17,6 +18,7 @@ enzona:
     pt: App de pagamentos digitais usado em todo o território cubano. Fui o desenvolvedor mobile principal por quase 8 anos.
     en: Digital payments app used across Cuba. I was its lead mobile developer for almost 8 years.
   stack: [Java, MVVM, SQLCipher, MQTT]
+  logo: enzona.jpg
   links:
     - { type: store, store: Apklis, url: 'https://www.apklis.cu/application/cu.xetid.apk.enzona' }
 
@@ -50,6 +52,7 @@ rueda-viva:
     pt: App de bicicleta ergométrica com sequências diárias e recordes, feito com Spec-Driven Development (6 specs e 43 tarefas).
     en: Stationary bike app with daily streaks and personal records, built with Spec-Driven Development (6 specs, 43 tasks).
   stack: [Flutter, flutter_bloc, drift, freezed]
+  logo: rueda-viva.png
   links:
     - { type: repo, url: 'https://github.com/juliangg910316/SpinStreak' }
   # Build de Flutter Web (rama feat/demo-web de SpinStreak) copiado en public/demos/rueda-viva/.
@@ -70,6 +73,7 @@ studio-shaddai:
     pt: Agendamento de horários para um salão de unhas de Curitiba, com painel administrativo e um único código para as três plataformas.
     en: Appointment booking for a nail salon in Curitiba, with an admin panel and a single codebase for all three platforms.
   stack: [Flutter, Riverpod, Firebase, go_router]
+  logo: studio-shaddai.svg
   links:
     - { type: web, url: 'https://dshaddai.com' }
     - { type: repo, url: 'https://github.com/juliangg910316/shaddai-app' }
@@ -89,6 +93,7 @@ superpay23:
     pt: App financeiro que comecei do zero, com cartões Visa, verificação KYC, autenticação em dois fatores e pagamentos por QR.
     en: Finance app I started from scratch, with Visa cards, KYC verification, two-factor authentication and QR payments.
   stack: [Flutter, Bloc, GetIt, GoRouter]
+  logo: superpay23.jpg
 
 centro-de-distribucion:
   name:
@@ -108,6 +113,7 @@ centro-de-distribucion:
     pt: Recebimento e expedição de mercadorias com leitura de códigos e OCR, modo offline e impressão de etiquetas.
     en: Goods receiving and dispatch with barcode reading and OCR, offline mode and label printing.
   stack: [Flutter, BLoC, Scandit, Tesseract OCR]
+  logo: centro-de-distribucion.jpg
 
 # ── Otros proyectos ─────────────────────────────────────────
 bowling-app:
@@ -140,6 +146,7 @@ denunciapp:
     pt: Denúncias sobre problemas em repartições públicas, com acompanhamento do status e envio offline.
     en: Complaints about problems in public offices, with status tracking and offline sending.
   stack: [Flutter, GetX, Isar, Clean Architecture]
+  logo: denunciapp.png
 
 micerveza-desafio:
   name: MiCerveza-Desafío

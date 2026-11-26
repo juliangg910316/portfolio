@@ -17,6 +17,8 @@ const proyectos = defineCollection({
     kind: texto,
     summary: texto,
     stack: z.array(z.string()).min(1).max(5),
+    /** HU-15: archivo en src/assets/logos/. Sin logo, la tarjeta usa la miniatura genérica. */
+    logo: z.string().regex(/^[a-z0-9-]+\.(png|jpg|svg)$/).optional(),
     internal: z.boolean().default(false),
     inDevelopment: z.boolean().default(false),
     fullStack: z.boolean().default(false),

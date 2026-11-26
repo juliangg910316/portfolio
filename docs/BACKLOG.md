@@ -18,5 +18,6 @@ Estado: ⬜ pendiente · 🟦 en curso · ✅ hecha. Orden de trabajo de arriba 
 | ✅ | [HU-08](historias/HU-08-blog.md) | Blog | Media |
 | ✅ | [HU-13](historias/HU-13-demo-flutter.md) | Demo de Flutter Web | Baja |
 | ✅ | [HU-14](historias/HU-14-certificados.md) | Ver los certificados | Media |
+| ✅ | [HU-15](historias/HU-15-logos-proyectos.md) | Logo de cada proyecto en su tarjeta | Media |
 
 Nueva historia: copiar [`historias/_plantilla.md`](historias/_plantilla.md).

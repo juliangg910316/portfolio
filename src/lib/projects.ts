@@ -15,6 +15,7 @@ export interface ProjectData {
   kind: Record<Lang, string>;
   summary: Record<Lang, string>;
   stack: string[];
+  logo?: string | undefined;
   internal: boolean;
   inDevelopment: boolean;
   fullStack: boolean;
