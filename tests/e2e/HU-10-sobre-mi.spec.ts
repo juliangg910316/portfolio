@@ -109,7 +109,7 @@ test.describe('HU-10 · Sobre mí', () => {
     const sec = page.getByRole('region', { name: 'Idiomas que hablo' });
     await expect(sec.getByRole('listitem').nth(0)).toContainText('Nativo');
     await expect(sec.getByRole('listitem').nth(1)).toContainText('Intermedio');
-    await expect(sec.getByRole('listitem').nth(2)).toContainText('Profesional básico');
+    await expect(sec.getByRole('listitem').nth(2)).toContainText('Intermedio');
   });
 
   test('toque personal: la bici estática enlaza el caso de Rueda Viva', async ({ page }) => {

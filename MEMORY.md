@@ -6,6 +6,7 @@
 - Backlog de 14 historias en `docs/BACKLOG.md`. ✅ HU-01 (inicio), ✅ HU-02 (idiomas), ✅ HU-12 (SEO), ✅ HU-03 (proyectos), ✅ HU-04 (casos de estudio), ✅ HU-05 (trayectoria y CV), ✅ HU-07 (contacto), ✅ HU-11 (tema), ✅ HU-06 (servicios), ✅ HU-10 (sobre mí), ✅ HU-08 (blog), ✅ HU-09 (cómo trabajo), ✅ HU-13 (demo Flutter Web), ✅ HU-14 (ver certificados). **Backlog completo.**
 - Casos de estudio con huecos `[PENDIENTE: …]` (ES/PT/EN): `grep -rn PENDIENTE src/content/casos/es` para ver la lista. Al rellenarlos, cambiar los 3 idiomas.
 - Foto de Julian en `src/assets/julian.jpg` (componente `Photo.astro`).
+- Pendiente de Julian: hacer un **test de inglés** para validar el nivel. Desde el 2026-11-25 la web y el CV dicen «Intermedio» (antes «Profesional básico»); si el test da otro nivel, cambiar `aboutPage.lang.en.level` y `cv.languages` en `src/i18n/ui.ts` (3 idiomas) y regenerar el CV (`npm run cv`).
 - Marcadores `[PENDIENTE]` en la web: WhatsApp (`social.whatsapp` en `src/i18n/links.ts`, hoy `https://wa.me/PENDIENTE`).
 - CV en PDF: **generado** con `npm run cv` desde `/cv/` (datos de `experiencia.yaml`, `formacion.yaml`, `certificaciones.yaml` y las claves `cv.*` de `ui.ts`). La página `/cv/` solo existe con `CV_PRINT=1`; no se publica. Volver a ejecutarlo y hacer commit de `public/cv/` cada vez que cambien esos datos.
 - Rutas del menú ya definitivas, con el mismo slug en los 3 idiomas y **barra final**: `/proyectos/`, `/experiencia/`, `/blog/`, `/contacto/` (y `/#sobre-mi`). Blog da 404 hasta su historia.
