@@ -17,7 +17,7 @@
 - Pendiente: comprar el dominio y cambiar `site` en `astro.config.mjs` → después **`npm run og`** (la URL sale en la imagen). `robots.txt`, sitemap, canonical y OG toman `site` solos.
 
 ## Decisiones
-- 2026-11-26 (HU-15): logos en las tarjetas (`logo:` en `proyectos.yaml`, archivos en `src/assets/logos/`). Bowling App y SCA sin logo a propósito (confidencialidad). Pendiente: logo completo de MiCerveza-Desafío; MeuBolso y CCONet sin logo.
+- 2026-11-26 (HU-15): logos en las tarjetas, a la izquierda del nombre; sin logo, icono genérico de móvil (`logo:` en `proyectos.yaml`, archivos en `src/assets/logos/`). Bowling App y SCA sin logo a propósito (confidencialidad). Pendiente: logo completo de MiCerveza-Desafío; MeuBolso y CCONet sin logo.
 - 2026-11-25 (HU-14): certificados en ventana (`<dialog>`) desde el inicio; imágenes = 1.ª página de los PDF del vault en `src/assets/certificados/` (los PDF no se publican). Pendiente: certificado de Domina Kotlin. Marca del menú: JulianGG (antes Julian.dev).
 - 2026-11-24 (HU-13): demo web de Rueda Viva en `public/demos/rueda-viva/` (build de la rama `feat/demo-web` de SpinStreak, sin `canvaskit/`: el motor sale de la CDN de Flutter). Cómo regenerarla: `docs/historias/HU-13-demo-flutter.md`. La rama de SpinStreak no tiene push.
 - 2026-11-24 (HU-09): `/como-trabajo/` en el menú (8 entradas → menú en su propia línea por debajo de `xl`); Rueda Viva 6 specs / 43 tareas / 25 commits. Pendiente: que Julian revise las descripciones de Cursor y Copilot.

@@ -44,6 +44,40 @@ test.describe('HU-15 · Logo de cada proyecto en su tarjeta', () => {
     expect(src).toMatch(/^\/_astro\/.+\.webp$/);
   });
 
+  test('CA5 el icono está a la izquierda del nombre y no hay franja de color arriba', async ({ page }) => {
+    await page.goto('/proyectos/');
+    for (const id of [...conLogo, ...sinLogo]) {
+      const card = page.locator(`article#${id}`);
+      const icono = card.locator('[data-logo], [data-thumb]');
+      const titulo = card.getByRole('heading', { level: 3 });
+      const [i, t, c] = await Promise.all([icono.boundingBox(), titulo.boundingBox(), card.boundingBox()]);
+      expect(i!.x + i!.width).toBeLessThanOrEqual(t!.x);
+      // El título empieza a la altura del icono (misma fila).
+      expect(t!.y).toBeGreaterThanOrEqual(i!.y - 2);
+      expect(t!.y).toBeLessThan(i!.y + i!.height);
+      // El icono está arriba de la tarjeta, sin franja de color encima.
+      expect(i!.y - c!.y).toBeLessThan(30);
+      expect(i!.height).toBeLessThanOrEqual(64);
+    }
+  });
+
+  test('CA6 las etiquetas van en el cuerpo y no tapan el icono', async ({ page }) => {
+    await page.goto('/proyectos/');
+    for (const [id, etiqueta] of [
+      ['superpay23', 'App interna'],
+      ['studio-shaddai', 'En desarrollo'],
+      ['sca', 'Full-stack'],
+    ] as const) {
+      const card = page.locator(`article#${id}`);
+      const [e, i] = await Promise.all([
+        card.getByText(etiqueta, { exact: true }).boundingBox(),
+        card.locator('[data-logo], [data-thumb]').boundingBox(),
+      ]);
+      const solapa = e!.x < i!.x + i!.width && e!.x + e!.width > i!.x && e!.y < i!.y + i!.height && e!.y + e!.height > i!.y;
+      expect(solapa, `${etiqueta} tapa el icono de ${id}`).toBe(false);
+    }
+  });
+
   for (const prefijo of ['', '/en']) {
     test(`CA4 ${prefijo}/proyectos/ sin errores de accesibilidad ni scroll horizontal a 360 px`, async ({ page }) => {
       await page.setViewportSize({ width: 360, height: 740 });

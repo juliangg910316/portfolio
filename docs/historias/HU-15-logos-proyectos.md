@@ -9,6 +9,8 @@
 2. **Dado** un proyecto sin logo, **entonces** su tarjeta mantiene la miniatura genérica.
 3. **Dado** el logo, **entonces** es decorativo (el nombre del proyecto ya está en el título) y se sirve optimizado.
 4. Funciona en ES, PT y EN, sin errores de accesibilidad y sin scroll horizontal a 360 px.
+5. **Dado** una tarjeta, **entonces** el icono (logo o icono genérico de móvil) está a la izquierda del nombre y del tipo de app, sin franja de color arriba.
+6. **Dado** una tarjeta con etiqueta («App interna», «En desarrollo», «Full-stack»), **entonces** la etiqueta va en el cuerpo de la tarjeta y no tapa el icono.
 
 ## Decisiones (2026-11-26)
 - Logos en `src/assets/logos/`, enlazados con `logo:` en `proyectos.yaml`.
@@ -18,3 +20,4 @@
   - SCA: el icono es el escudo del cliente, que la web no nombra.
 - **Sin logo de momento**: MiCerveza-Desafío (en Google Sites está recortado; falta el original), MeuBolso (aún tiene el icono de Flutter) y Apps de CCONet.
 - El logo de DenunciApp solo existe a 72 px: se ve algo menos nítido.
+- 2026-11-26 (rediseño): icono de 56 px a la izquierda del nombre, como la ficha de una tienda de apps. Sin logo → icono genérico de móvil (decisión de Julian). Se quita la franja de 150 px.
