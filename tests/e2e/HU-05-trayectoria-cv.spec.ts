@@ -3,7 +3,7 @@ import { expectNoA11yViolations } from './a11y';
 
 // HU-05 · Trayectoria y CV (docs/historias/HU-05-trayectoria-cv.md)
 
-const empresas = ['CCONet Sistemas', 'SCA (freelance)', 'Treew', 'Dofleini Software', 'DSpot', 'XETID'];
+const empresas = ['SCA (freelance)', 'CCONet Sistemas', 'Treew', 'Dofleini Software', 'DSpot', 'XETID'];
 
 const idiomas = [
   { lang: 'es', prefijo: '', descargar: 'Descargar CV', trayectoria: 'Trayectoria', formacion: 'Formación', certificaciones: 'Certificaciones y cursos', master: 'Máster en Matemáticas' },
@@ -38,6 +38,10 @@ test.describe('HU-05 · Trayectoria y CV', () => {
     }
     // La experiencia actual no tiene fecha de fin.
     await expect(items.first()).toContainText('actualidad');
+    // CCONet terminó en agosto de 2026.
+    await expect(items.nth(1)).toContainText('CCONet Sistemas');
+    await expect(items.nth(1)).toContainText('jun. 2025 – ago. 2026');
+    await expect(page.getByRole('main')).not.toContainText(/Lidero|Soy responsable/);
     // Fechas confirmadas (Google Sites).
     await expect(items.nth(4)).toContainText('jun. 2022 – dic. 2022');
     await expect(items.nth(3)).toContainText('abr. 2023 – dic. 2023');

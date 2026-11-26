@@ -1,12 +1,13 @@
 # Trayectoria profesional (HU-05). Alimenta /experiencia/ y el CV en PDF (npm run cv).
 # Fuentes: CV, nota del portafolio (fechas de Google Sites) y datos extra de XETID.
-# `order`: de la más reciente a la más antigua (el trabajo principal, CCONet, va primero aunque SCA empezó después).
+# `order`: de la más reciente a la más antigua.
 # Fechas en AAAA-MM; sin `end`, es el trabajo actual. Entre 2 y 4 logros por experiencia.
 
 cconet:
-  order: 1
+  order: 2
   company: CCONet Sistemas
   start: '2025-06'
+  end: '2026-08'
   role:
     es: Mobile Tech Lead
     pt: Mobile Tech Lead
@@ -16,21 +17,21 @@ cconet:
     pt: Curitiba, Brasil · Híbrido
     en: Curitiba, Brazil · Hybrid
   achievements:
-    - es: Lidero un equipo de 4 desarrolladores en proyectos Flutter con Clean Architecture, centrados en el rendimiento y la mantenibilidad.
-      pt: Lidero uma equipe de 4 desenvolvedores em projetos Flutter com Clean Architecture, com foco em performance e manutenibilidade.
-      en: I lead a team of 4 developers on Flutter projects with Clean Architecture, focused on performance and maintainability.
-    - es: Soy responsable de las apps principales, CCONet y 153 Cidadão, dentro de un portafolio de unas 10 apps.
-      pt: Sou responsável pelos apps principais, CCONet e 153 Cidadão, num portfólio de cerca de 10 apps.
-      en: I'm responsible for the main apps, CCONet and 153 Cidadão, within a portfolio of about 10 apps.
-    - es: Tomo las decisiones de arquitectura, hago code review y mentoría, y defino los estándares de desarrollo del equipo.
-      pt: Tomo as decisões de arquitetura, faço code review e mentoria e defino os padrões de desenvolvimento da equipe.
-      en: I make the architecture decisions, do code reviews and mentoring, and set the team's development standards.
-    - es: Integro el desarrollo asistido por IA (LLMs y agentes) para acelerar las entregas y reducir el código repetitivo.
-      pt: Integro o desenvolvimento assistido por IA (LLMs e agentes) para acelerar as entregas e reduzir o código repetitivo.
-      en: I bring AI-assisted development (LLMs and agents) into the workflow to ship faster and cut boilerplate.
+    - es: Lideré un equipo de 4 desarrolladores en proyectos Flutter con Clean Architecture, centrados en el rendimiento y la mantenibilidad.
+      pt: Liderei uma equipe de 4 desenvolvedores em projetos Flutter com Clean Architecture, com foco em performance e manutenibilidade.
+      en: I led a team of 4 developers on Flutter projects with Clean Architecture, focused on performance and maintainability.
+    - es: Fui responsable de las apps principales, CCONet y 153 Cidadão, dentro de un portafolio de unas 10 apps.
+      pt: Fui responsável pelos apps principais, CCONet e 153 Cidadão, num portfólio de cerca de 10 apps.
+      en: I was responsible for the main apps, CCONet and 153 Cidadão, within a portfolio of about 10 apps.
+    - es: Tomé las decisiones de arquitectura, hice code review y mentoría, y definí los estándares de desarrollo del equipo.
+      pt: Tomei as decisões de arquitetura, fiz code review e mentoria e defini os padrões de desenvolvimento da equipe.
+      en: I made the architecture decisions, did code reviews and mentoring, and set the team's development standards.
+    - es: Integré el desarrollo asistido por IA (LLMs y agentes) para acelerar las entregas y reducir el código repetitivo.
+      pt: Integrei o desenvolvimento assistido por IA (LLMs e agentes) para acelerar as entregas e reduzir o código repetitivo.
+      en: I brought AI-assisted development (LLMs and agents) into the workflow to ship faster and cut boilerplate.
 
 sca:
-  order: 2
+  order: 1
   company: SCA (freelance)
   start: '2026-05'
   role:
